@@ -10,6 +10,6 @@ export class UserService {
 
   register(data){
     console.log("inside user service",data)
-   return this.httpService.postat('AccountUser/UserRegister',data)
+   return this.httpService.post('AccountUser/UserRegister',data)
   }
 }

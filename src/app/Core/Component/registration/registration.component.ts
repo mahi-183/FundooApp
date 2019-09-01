@@ -38,6 +38,8 @@ registerForm:FormGroup
     //this.router.navigate(['/login']);
     },
     error => {
+    // this.alertService.error(error);
+    // this.loading = false;
     });
   }
 }

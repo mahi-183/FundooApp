@@ -12,16 +12,17 @@ export class HTTPService {
 
   baseUrl = environment.BaseUrl;
 
-  postat(url, data)
+  post(url, data)
   {
     console.log("data in http ",data);
     
-    // let option={
-    //   'Authorization' : 'bearer ' + localStorage.getItem('token'),
-    // 'content-Type' : 'application/json'
-    // }
-  
-    return this.http.post(this.baseUrl + url, data);
+    let option = {
+      headers: new HttpHeaders({
+        'Authorization' : 'bearer ' + localStorage.getItem('token'),
+        'content-Type' : 'application/json'
+        }) 
+    }
+    return this.http.post(this.baseUrl + url, data, option);
   }
 
 }
