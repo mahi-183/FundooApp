@@ -22,30 +22,36 @@
                   <input matInput  formControlName="lastName" placeholder="Placeholder">
               </mat-form-field>
           </div>
-
-          <div  fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap = "10px">
-              <mat-form-field appearance="outline" fxFlex = "100">
+          
+          <div  fxLayout="row" fxLayoutGap = "10px" fxLayout.xs = "column">
+              <mat-form-field appearance="outline" fxFlex = "100" fxFlex.xs = "100">
                   <mat-label>EmailId</mat-label>
-                  <input matInput formControlName="email" placeholder="Placeholder">
-                  <mat-hint>You can use letters, numbers & periods</mat-hint>
-              </mat-form-field> 
+                  <input matInput formControlName="emailId" placeholder="Placeholder">
+              </mat-form-field>
+              <mat-form-field appearance="outline" fxFlex = "100" fxFlex.xs = "100">
+                <mat-label>UserName</mat-label>
+                <input matInput formControlName="userName" placeholder="Placeholder">
+            </mat-form-field>  
+          </div>
+          <div>
+            <mat-hint>You can use letters, numbers & periods</mat-hint>
           </div>
 
           <div  fxLayout="row"  fxLayoutGap = "10px" fxLayout.xs = "column">
                 <mat-form-field appearance="outline" fxFlex= 100 fxFlex.xs = 100>
                         <mat-label>Password</mat-label>
-                        <input matInput formControlName="password" placeholder="Placeholder">
+                        <input type = "password" matInput formControlName="password" placeholder="Placeholder">
                 </mat-form-field>
                 <mat-form-field appearance="outline" fxFlex= 100 fxFlex.xs = 100>
                         <mat-label>Confirm Password</mat-label>
-                        <input matInput formControlName="cpassword" placeholder="cpassword">
+                        <input type = "password" matInput formControlName="cpassword" placeholder="cpassword">
                 </mat-form-field>
           </div>
           <div >
                 <mat-hint>Use 8 or more characters with a mix of letters, numbers & symbols</mat-hint>
           </div>
           <div  fxLayout="row" fxLayoutAlign="space-between center" fxLayout.xs = "column">
-                <a href = "login" fxFlex= 100 fxFlex.xs = 100>Sign in instead.</a>  
+                <a href = "\login" fxFlex= 100 fxFlex.xs = 100>Sign in instead.</a>  
                 <div fxLayout="row" fxLayoutAlign="end center" fxFlex= 100 fxFlex.xs = 100>
                 <button  mat-button class= "button" >Next</button>
                 </div>

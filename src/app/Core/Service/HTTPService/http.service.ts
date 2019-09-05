@@ -24,6 +24,5 @@ export class HTTPService {
     }
     return this.http.post(this.baseUrl + url, data, option);
   }
-
 }
 

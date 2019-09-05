@@ -12,4 +12,9 @@ export class UserService {
     console.log("inside user service",data)
    return this.httpService.post('AccountUser/UserRegister',data)
   }
+  
+  login(data){
+    console.log("inside user service",data)
+   return this.httpService.post('AccountUser/UserLogin',data)
+  }
 }
