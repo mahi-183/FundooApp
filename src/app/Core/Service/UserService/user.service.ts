@@ -17,4 +17,13 @@ export class UserService {
     console.log("inside user service",data)
    return this.httpService.post('AccountUser/UserLogin',data)
   }
+
+  forgotPassword(data){
+    console.log("inside user service",data)
+    return this.httpService.postate('AccountUser/ForgetPassword?email=',data)
+  }
+  resetPassword(data){
+    console.log("inside user service",data)
+    return this.httpService.post('AccountUser/ResetPassword',data)
+  }
 }

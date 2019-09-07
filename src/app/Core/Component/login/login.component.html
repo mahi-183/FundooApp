@@ -1,4 +1,4 @@
-<div fxLayout="row" fxLayoutAlign="center center" fxFlex = 100>
+<div class = "main" fxLayout="row" fxLayoutAlign="center center" fxFlex = 100>
     <mat-card>
          <mat-card-title fxLayout="row" fxLayoutAlign="center center">
             <span class="blue">F</span>
@@ -6,7 +6,10 @@
              <span class="yellow">n</span>
              <span class="blue">d</span>
              <span class="green">o</span>
-             <span class="red">o</span> 
+             <span class="red">o</span>
+             <span class="green">A</span>
+             <span class="red">p</span>
+             <span class="blue">p</span>  
         </mat-card-title>
         <div>
           <mat-card-title fxLayout="row" fxLayoutAlign="center center">Sign In</mat-card-title>
@@ -16,30 +19,42 @@
         </div>
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
           <div  fxLayout="row" fxLayoutGap = "10px" fxLayout.xs = "column">
-              <mat-form-field [style.fontSize.px]="12" appearance="outline" fxFlex = "100" fxFlex.xs = "100">
+              <mat-form-field [style.fontSize.px]="14" appearance="outline" fxFlex = "100" fxFlex.xs = "100">
                 <mat-label>UserName</mat-label>
                 <input matInput formControlName="userName" placeholder="Placeholder">
              </mat-form-field>  
           </div>
           <div>
-            <mat-hint>You can use letters & numbers </mat-hint>
+            <mat-hint [style.fontSize.px]="12">You can use letters & numbers </mat-hint>
           </div>
 
           <div fxLayout="row"  fxLayoutGap = "10px" fxLayout.xs = "column">
-                <mat-form-field [style.fontSize.px]="12" appearance="outline" fxFlex= 100 fxFlex.xs = 100>
+                <mat-form-field [style.fontSize.px]="14" appearance="outline" fxFlex= 100 fxFlex.xs = 100>
                         <mat-label>Password</mat-label>
                         <input type = "password" matInput formControlName="password" placeholder="Placeholder">
                 </mat-form-field>
           </div>
           <div >
-                <mat-hint>Use 8 or more characters with a mix of letters, numbers & symbols</mat-hint>
+                <mat-hint [style.fontSize.px]="12">Use 8 or more characters with a mix of letters, numbers & symbols</mat-hint>
           </div>
-          <div  fxLayout="row" fxLayoutAlign="space-between center" fxLayout.xs = "column">
-                <a href = "\forgotPassword" fxLayoutAlign="start center" fxFlex= 100 fxFlex.xs = 100>Forgot Password</a>  
+          <div class = "main1" fxLayout="row" fxLayoutAlign="space-between center" fxLayout.xs = "column">
+                <div fxLayoutAlign="start center" fxFlex= 100 fxFlex.xs = 100>
+                <!-- <a href = "\forgotPassword" [style.fontSize.px]="12" fxLayoutAlign="start center" fxFlex= 100 fxFlex.xs = 100>Forgot Password</a>   -->
+                  <span [style.fontSize.px]="12" routerLink="/forgotPassword" routerLinkActive="router-link-active" class="color">Forgot Password ?</span>
+              </div>
                 <div fxLayout="row" fxLayoutAlign="end center" fxFlex= 100 fxFlex.xs = 100>
-                <button  mat-button class= "button" >Next</button>
+                  <!-- <a href = "\register" [style.fontSize.px]="12" fxLayoutAlign="end center" fxFlex= 100 fxFlex.xs = 100>Create Account</a>   -->
+                  <span [style.fontSize.px]="12" routerLink="/register" routerLinkActive="router-link-active" class="color">Create Account ?</span>
                 </div>
           </div> 
+          <div class = "main1" fxLayout="row" fxLayout.xs = "column"> 
+            <div>
+            <button [style.fontSize.px]="12" fxLayoutAlign="satrt" mat-button class= "button" (Click)="SocialLogin()">Social Login</button>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="end" fxFlex= 100 fxFlex.xs = 100>
+            <button [style.fontSize.px]="12" mat-button class= "button" >Submit</button>
+            </div>
+      </div> 
         </form>             
       </mat-card>
 </div>

@@ -22,7 +22,23 @@ export class HTTPService {
         'content-Type' : 'application/json'
         }) 
     }
+    console.log("data in http ",option);
+    console.log("data in http ",data);  
     return this.http.post(this.baseUrl + url, data, option);
   }
-}
+  postate(url, data)
+  {
+    console.log("data in http ",data.email);
+    
+    let option = {
+      headers: new HttpHeaders({
+        'Authorization' : 'bearer ' + localStorage.getItem('token'),
+        'content-Type' : 'application/json'
+        }) 
+    }
+    // console.log("data in http ",option);
+    // console.log("data in http ",data);  
 
+    return this.http.post(this.baseUrl + url + data.email, option);
+  }
+}

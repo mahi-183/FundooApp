@@ -10,12 +10,18 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './Core/Component/login/login.component';
+import { ForgotPasswordComponent } from './Core/Component/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './Core/Component/reset-password/reset-password.component';
+import { DashboardComponent } from './Core/Component/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegistrationComponent,
-    LoginComponent
+    LoginComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
