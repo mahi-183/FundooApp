@@ -1,3 +1,50 @@
-<p>
-  dashboard works!
-</p>
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches" >
+  <mat-toolbar class="example-toolbar" fxLayout = "row" fxLayoutAlign="center center">
+    <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+    <img class="gb_pa gb_de gb_za" alt="" aria-hidden="true" src="https://www.gstatic.com/images/branding/product/1x/keep_48dp.png" srcset="https://www.gstatic.com/images/branding/product/1x/keep_48dp.png 1x, https://www.gstatic.com/images/branding/product/2x/keep_48dp.png 2x " style="width:40px;height:40px">
+    <span>
+    <h1 class="example-app-name">FundooApp</h1>
+    </span>
+    
+  <div class="searchbar">
+      <!-- <button mat-icon-button class="fundoo31">
+          <mat-icon>searchbox</mat-icon>
+      </button> -->
+        <input type = "search" class = "input-search" matInput placeholder = "search">
+  </div>
+
+    <div fxLayoutAlign= "end" style="margin-left: 45pc" fxLayoutGap=40px>
+      <mat-icon>refresh</mat-icon>
+      <mat-icon>list_view</mat-icon>
+      <mat-icon>settings</mat-icon>
+      <mat-icon>view_module</mat-icon>
+    </div>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="example-sidenav-container">
+                        <!-- [style.marginTop.px]="mobileQuery.matches ? 56 : 0"> -->
+    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+                [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+      <mat-nav-list class = "SideNav">
+        <div>
+        <a mat-list-item routerLink="." >Notes</a>
+        </div>
+        <div fxLayoutGap = 10px>
+          <a mat-list-item routerLink="/login" >
+            <mat-icon>notifications</mat-icon>
+            Reminder</a>
+        </div>
+        <div>
+            <a mat-list-item routerLink="/login" >Label</a>
+        </div>
+      <div>
+            <a mat-list-item routerLink="/login" >Archive</a>
+        </div>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

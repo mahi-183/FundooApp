@@ -5,6 +5,7 @@ import { UserService } from '../../Service/UserService/user.service';
 import { Route } from '@angular/compiler/src/core';
 import { MatSnackBar } from '@angular/material';
 import { error } from 'util'; 
+import { SocialLoginModule,FacebookLoginProvider, AuthService } from "angular-6-social-login";
 
 @Component({
   selector: 'app-login',
@@ -12,6 +13,7 @@ import { error } from 'util';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  [x: string]: any;
   loginForm: FormGroup
   token:string
 
@@ -37,6 +39,8 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('LastName',response['userDetails'][0].lastName);
       localStorage.setItem('UserName',response['userDetails'][0].userName);
       localStorage.setItem('Email',response['userDetails'][0].email);
+      localStorage.setItem('UserId',response['userDetails'][0].id);
+      localStorage.setItem('Image',response['userDetails'][0].image);
       this.router.navigate(['\dashboard']);
       },
       err =>
@@ -44,7 +48,22 @@ export class LoginComponent implements OnInit {
         console.log("err", err);
       })
     }
-    SocialLogin(){
+
+
+    SocialLogin(socialPlatform : string){
+      let socialPlatformProvider;
+      if(socialPlatform == "facebook"){
+        socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
+      }
+
+      this.socialAuthService.signIn(socialPlatformProvider).then(
+        (userData) => {
+          console.log(socialPlatform+" sign in data : " , userData);
+          // Now sign-in with userData
+          // ...
+              
+        }
+      );
      console.log("inside the social login");
     }
 }

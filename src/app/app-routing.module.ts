@@ -5,6 +5,7 @@ import { LoginComponent } from './Core/Component/login/login.component';
 import { ForgotPasswordComponent } from './Core/Component/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './Core/Component/reset-password/reset-password.component';
 import { DashboardComponent } from './Core/Component/dashboard/dashboard.component';
+import { NotesComponent } from './Core/Component/notes/notes.component';
 
 const routes: Routes = [
   {
@@ -30,7 +31,18 @@ const routes: Routes = [
   },
   {
     path:'dashboard',
-    component:DashboardComponent
+    component:DashboardComponent,
+    children:[
+      {
+      path:'',
+      redirectTo:'notes',
+      pathMatch:'full'
+    },
+      {
+        path:'notes',
+        component:NotesComponent
+      },
+    ]
   },
 ];
 

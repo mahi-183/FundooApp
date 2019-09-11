@@ -3,4 +3,6 @@ export class User{
     lastName:string
     emailId:string
     password:string
+    serviceId :any;
+    userName:string
 }

@@ -1,5 +1,5 @@
 <div class = "main" fxLayout="row" fxLayoutAlign="center center" fxFlex = 100>
-    <mat-card>
+    <mat-card> 
          <mat-card-title fxLayout="row" fxLayoutAlign="center center">
             <span class="blue">F</span>
              <span class="red">u</span>
@@ -20,8 +20,8 @@
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
           <div  fxLayout="row" fxLayoutGap = "10px" fxLayout.xs = "column">
               <mat-form-field [style.fontSize.px]="14" appearance="outline" fxFlex = "100" fxFlex.xs = "100">
-                <mat-label>UserName</mat-label>
-                <input matInput formControlName="userName" placeholder="Placeholder">
+                <mat-label>User Name</mat-label>
+                <input matInput formControlName="userName" placeholder="User Name">
              </mat-form-field>  
           </div>
           <div>
@@ -31,7 +31,7 @@
           <div fxLayout="row"  fxLayoutGap = "10px" fxLayout.xs = "column">
                 <mat-form-field [style.fontSize.px]="14" appearance="outline" fxFlex= 100 fxFlex.xs = 100>
                         <mat-label>Password</mat-label>
-                        <input type = "password" matInput formControlName="password" placeholder="Placeholder">
+                        <input type = "password" matInput formControlName="password" placeholder="Password">
                 </mat-form-field>
           </div>
           <div >
@@ -47,9 +47,9 @@
                   <span [style.fontSize.px]="12" routerLink="/register" routerLinkActive="router-link-active" class="color">Create Account ?</span>
                 </div>
           </div> 
-          <div class = "main1" fxLayout="row" fxLayout.xs = "column"> 
+          <div class = "main1" fxLayout="row"> 
             <div>
-            <button [style.fontSize.px]="12" fxLayoutAlign="satrt" mat-button class= "button" (Click)="SocialLogin()">Social Login</button>
+            <button [style.fontSize.px]="12" fxLayoutAlign="satrt" mat-button class= "button" (Click)="SocialLogin('facebook')">Sign In with Facebook</button>
             </div>
             <div fxLayout="row" fxLayoutAlign="end" fxFlex= 100 fxFlex.xs = 100>
             <button [style.fontSize.px]="12" mat-button class= "button" >Submit</button>

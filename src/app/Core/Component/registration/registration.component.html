@@ -16,11 +16,11 @@
         </div>
         <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
           <div  fxLayout="row" fxLayoutGap = "10px" fxLayout.xs = "column">
-              <mat-form-field [style.fontSize.px]="12" appearance="outline" fxFlex= 100 fxFlex.xs = 100>
+              <mat-form-field [style.fontSize.px]="12" appearance="outline" fxFlex= "100" fxFlex.xs = "100">
                <mat-label>FirstName</mat-label>
                 <input formControlName="firstName" matInput placeholder="Placeholder">
               </mat-form-field>
-              <mat-form-field [style.fontSize.px]="12" appearance="outline" fxFlex= 100 fxFlex.xs = 100>
+              <mat-form-field [style.fontSize.px]="12" appearance="outline" fxFlex= "100" fxFlex.xs = "100">
                   <mat-label>LastName</mat-label>
                   <input matInput  formControlName="lastName" placeholder="Placeholder">
               </mat-form-field>
@@ -31,6 +31,11 @@
                   <mat-label>EmailId</mat-label>
                   <input matInput formControlName="emailId" placeholder="Placeholder">
               </mat-form-field>
+            </div>
+            <div>
+              <mat-hint [style.fontSize.px]="12">You can use letters, numbers & periods</mat-hint>
+            </div>
+            <div fxLayout="row" fxLayoutGap = "10px" fxLayout.xs = "column">
               <mat-form-field [style.fontSize.px]="12" appearance="outline" fxFlex = "100" fxFlex.xs = "100">
                 <mat-label>UserName</mat-label>
                 <input matInput formControlName="userName" placeholder="Placeholder">
@@ -53,12 +58,24 @@
           <div >
                 <mat-hint [style.fontSize.px]="12">Use 8 or more characters with a mix of letters, numbers & symbols</mat-hint>
           </div>
-          <div  fxLayout="row" fxLayoutAlign="space-between center" fxLayout.xs = "column">
-                <a href = "\login" [style.fontSize.px]="12" fxFlex= 100 fxFlex.xs = 100>Sign in instead.</a>  
-                <div fxLayout="row" fxLayoutAlign="end center" fxFlex= 100 fxFlex.xs = 100>
-                <button  [style.fontSize.px]="12" mat-button class= "button" >Next</button>
+          <div>
+          <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap = "10px">
+              <div fxLayout="row"  >
+                  <button  [style.fontSize.px]="12" mat-button class= "button" (click) = "Basic()" >Basic</button>
+                  </div>
+              <div fxLayout="row"  >
+              <button  [style.fontSize.px]="12" mat-button class= "button" (click) = "Advance()" >Advance</button>
+              </div>
+          </div> 
+          <div  fxLayout="row" fxLayoutAlign="space-between center">
+                <div fxLayoutAlign="start center" fxFlex= 100 fxFlex.xs = 50>
+                    <span [style.fontSize.px]="12" routerLink="/login" routerLinkActive="router-link-active" class="color">Sign In Instead ?</span>
+                </div>
+                <div fxLayoutAlign="end center" fxFlex= 100 fxFlex.xs = 50>
+                  <button  [style.fontSize.px]="12" mat-button class= "button" >Next</button>
                 </div>
           </div> 
+          </div>
         </form>             
       </mat-card>
 </div>
