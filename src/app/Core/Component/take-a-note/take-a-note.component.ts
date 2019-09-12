@@ -26,7 +26,7 @@ export class TakeANoteComponent implements OnInit {
     }
   AddNotes(){
     this.toggle=false;
-    var data = {
+    let data = {
       userId: localStorage.getItem('UserId'),
       title:this.addNoteForm.controls.title.value,
       description:this.addNoteForm.controls.description.value

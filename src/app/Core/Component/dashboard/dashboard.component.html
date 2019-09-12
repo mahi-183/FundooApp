@@ -1,4 +1,4 @@
-<div class="example-container" [class.example-is-mobile]="mobileQuery.matches" >
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches" fxFlex='100' >
   <mat-toolbar class="example-toolbar" fxLayout = "row" fxLayoutAlign="center center">
     <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
     <img class="gb_pa gb_de gb_za" alt="" aria-hidden="true" src="https://www.gstatic.com/images/branding/product/1x/keep_48dp.png" srcset="https://www.gstatic.com/images/branding/product/1x/keep_48dp.png 1x, https://www.gstatic.com/images/branding/product/2x/keep_48dp.png 2x " style="width:40px;height:40px">
@@ -21,25 +21,27 @@
     </div>
   </mat-toolbar>
 
-  <mat-sidenav-container class="example-sidenav-container">
+  <mat-sidenav-container class="example-sidenav-container" fxFlex='100' >
                         <!-- [style.marginTop.px]="mobileQuery.matches ? 56 : 0"> -->
     <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
                 [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
-      <mat-nav-list class = "SideNav">
+      <mat-nav-list class = "SideNav" style="width:140px" >
         <div>
         <a mat-list-item routerLink="." >Notes</a>
         </div>
         <div fxLayoutGap = 10px>
-          <a mat-list-item routerLink="/login" >
-            <mat-icon>notifications</mat-icon>
-            Reminder</a>
+          <a mat-list-item routerLink="/login" ><mat-icon>notifications</mat-icon>Reminder</a>
         </div>
         <div>
-            <a mat-list-item routerLink="/login" >Label</a>
+            <a mat-list-item routerLink="/login"><mat-icon></mat-icon>Label</a>
         </div>
       <div>
-            <a mat-list-item routerLink="/login" >Archive</a>
+            <a mat-list-item routerLink="/login" ><mat-icon>archive</mat-icon>Archive</a>
         </div>
+        
+      <div>
+          <a mat-list-item routerLink="/login" ><mat-icon>restore_from_trash</mat-icon>Trash</a>
+      </div>
       </mat-nav-list>
     </mat-sidenav>
 

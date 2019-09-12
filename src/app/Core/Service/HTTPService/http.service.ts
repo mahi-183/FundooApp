@@ -55,4 +55,16 @@ export class HTTPService {
     console.log("data in http ", data);  
     return this.http.post(this.baseUrl1 + url, data, option);
   }
+
+  getNotes(url){
+    console.log("inside httpservice",url);
+    
+    let option = {
+      headers: new HttpHeaders({
+        'Authorization' : 'bearer ' + localStorage.getItem('token'),
+        'content-Type' : 'application/json'
+        }) 
+    }
+    return this.http.get(this.baseUrl1 + url, option);
+  }
 }

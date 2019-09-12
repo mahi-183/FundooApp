@@ -1,40 +1,30 @@
-<mat-sidenav-container class="example-sidenav-container" >
-  <mat-sidenav-content class="example">
+
     <form [formGroup]= "addNoteForm">
       <div fxLayout="row" fxLayoutAlign="center center">
           <mat-card class="fundoo-card" (click)="openMainMatCard()" *ngIf="toggle==false">
             <div>
               <input class="noteinput" formControlName="title" placeholder="Take a note....">
             </div>
-              <!-- <form [formGroup]="addNoteForm">
-                  <div fxLayout="row" *ngIf = "!openCard" (click)="openCard=false">
-                        
-                  </div> -->
-            
-                  <!-- open the main card -->
-                  <!-- <div fxLayout="col" fxLayoutAlign="center center" *ngIf = "openCard">
-                      <input class="noteinput" formControlName="title" placeholder="Take a note....">
-                
-                      <textarea formControlName="Description" placeholder="Take a note..." fxLayout="col"
-                      [ngStyle.xs]="{'width.px': 100 }" [ngStyle.sm]="{'width.px': 100 }" [ngStyle.md]="{'width.px': 100 }"
-                      style="width: 560px; outline: none; overflow: hidden; border:none" [mat-autosize] autofocus></textarea>        
-                  </div>
-                  <div>
-                      <button [style.fontSize.px]="12" mat-button class= "button" (click)="openCard=false" (Click)="AddNotes()">close</button>
-                      </div>
-                    </form> -->
+             
              </mat-card>
              <mat-card class="fundoo-card" *ngIf="toggle==true">
                <div fxLayout="column" fxLayoutAlign="start">
                <div><input class="noteinput" formControlName="title" placeholder="Take a note...."></div>
                <div><textarea formControlName="description" placeholder="description" [ngStyle.md]="{'width.px': 100 }"
                 style="width: 400px; outline: none; overflow: hidden; border:none" [mat-autosize] autofocus></textarea></div>
-               <div fxLayout="row" class= "button1">
-                  <button mat-button (click)="AddNotes()">close</button>
-                  </div>
+               
               </div>
+              <div></div>
+              <div fxFlexLayout="row" >
+                <div fxFlex="90" style ="padding-top: 11px;">
+                  <app-icon></app-icon>
+                </div>
+                  <div fxFlex="10" >
+                      <button mat-button (click)="AddNotes()">close</button>
+                      </div>
+                </div>
              </mat-card>
       </div>
     </form>
-  </mat-sidenav-content>   
-</mat-sidenav-container>
+  
+  

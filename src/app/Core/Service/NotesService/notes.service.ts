@@ -12,9 +12,8 @@ export class NotesService {
     return this.httpService.postNotes('Notes/addNotes',data);
   }
   
-  register(data){
-    console.log("inside user service",data)
-   return this.httpService.post('AccountUser/UserRegister',data)
+  getAllNotes(userid){
+    console.log("inside notes service", userid);
+    return this.httpService.getNotes('Notes/get/'+ userid);
   }
-  
 }
