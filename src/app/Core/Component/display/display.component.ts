@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output,EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-display',
@@ -7,9 +7,15 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class DisplayComponent implements OnInit {
   @Input() childMessage; 
+
+
+  @Output() colorEmitted = new EventEmitter <any>()
   constructor() { }
 
   ngOnInit() {
   
+  }
+  setColor(event){
+    this.colorEmitted.emit({});
   }
 }

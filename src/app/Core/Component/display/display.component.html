@@ -1,6 +1,6 @@
 <div fxLayout="row wrap" style="margin-top: 40px" fxFlexOffset="15" fxLayoutAlign="start center center">
   <div *ngFor="let item of childMessage ">
-    <mat-card style="width:192px;margin-right: 10px;margin-bottom: 10px">
+    <mat-card class = "displayNote"[ngStyle]="{'background-color':item.color}">
       <div fxLayout=" column">
         <div>
           <p>{{item.title}}</p>
@@ -11,7 +11,7 @@
       </div>
 
       <div>
-        <app-icon></app-icon>
+        <app-icon [childMessageIcon]="item" (selectedColor)="setColor($event)"></app-icon>
       </div>
 
     </mat-card>

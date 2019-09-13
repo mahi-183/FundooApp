@@ -67,4 +67,16 @@ export class HTTPService {
     }
     return this.http.get(this.baseUrl1 + url, option);
   }
+
+  updateNotes(url,data){
+    console.log("inside httpService",data);
+    
+    let option = {
+      headers: new HttpHeaders({
+        'Authorization' : 'bearer ' + localStorage.getItem('token'),
+        'content-Type' : 'application/json'
+        }) 
+    }
+    return this.http.post(this.baseUrl+url,data,option);
+  }
 }

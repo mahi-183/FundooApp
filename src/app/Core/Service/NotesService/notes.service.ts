@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HTTPService } from '../HTTPService/http.service';
+import { identifierModuleUrl } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -15,5 +16,10 @@ export class NotesService {
   getAllNotes(userid){
     console.log("inside notes service", userid);
     return this.httpService.getNotes('Notes/get/'+ userid);
+  }
+
+  updateNotes(id,data){
+    console.log("inside notes service",data);
+    return this.httpService.updateNotes('Notes/UpdateNotes?id='+ id, data);
   }
 }

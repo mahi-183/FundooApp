@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {  FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NotesService } from '../../Service/NotesService/notes.service';
 import { notes } from '../../Model/notes';
@@ -32,12 +32,19 @@ export class TakeANoteComponent implements OnInit {
       description:this.addNoteForm.controls.description.value
     }
     console.log('data..........', data);
+    if(this.addNoteForm!=null){
+      console.log("iside if condition",data);
+      this.notesService.AddNotes(data).subscribe(response=>
+        {
+          console.log("inside notes service", response);
+          this.router.navigate(['/dashboard/notes']);
+        })
+    }
+    else
+    {
     
-    this.notesService.AddNotes(data).subscribe(response=>
-      {
-        console.log("inside notes service", response);
-        this.router.navigate(['/dashboard/notes']);
-      })
+    }
+    
   }
   openMainMatCard(){
     this.toggle=true;

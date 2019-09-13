@@ -1,8 +1,17 @@
 <div  fxLayout="row" fxLayoutAlign="space-around center">
-  <mat-icon>add_alert</mat-icon>
-  <mat-icon>person_add</mat-icon>
-  <mat-icon>person_add</mat-icon>
-  <mat-icon>photo</mat-icon>
-  <mat-icon>archive</mat-icon>
+  <button mat-icon-button><mat-icon>add_alert</mat-icon></button>
+  <button mat-icon-button><mat-icon>person_add</mat-icon></button>
+  <button mat-button  [matMenuTriggerFor] ="aboveMenu">
+    <mat-icon>color_lens</mat-icon>
+    <mat-menu #aboveMenu="matMenu" yPosition="above">
+        <div fxLayout="row wrap" >
+          <div *ngFor = "let color of colorArray">
+            <div class="mat-icon-color" *ngFor= "let itemcolor of color" (click)="setcolor(itemcolor.color)" [ngStyle]="{'background': itemcolor.color }"></div>
+          </div>
+        </div>
+        </mat-menu>
+     </button>
+  <button mat-icon-button><mat-icon>photo</mat-icon></button>
+  <button mat-icon-button><mat-icon>archive</mat-icon></button>
   <mat-icon>more_vert</mat-icon>
-</div>
+  

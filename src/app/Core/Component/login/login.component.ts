@@ -41,10 +41,20 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('Email',response['userDetails'][0].email);
       localStorage.setItem('UserId',response['userDetails'][0].id);
       localStorage.setItem('Image',response['userDetails'][0].image);
+      this.snackBar.open(
+        "login Successfull",
+        "undo",
+        { duration: 5000 }
+        )
       this.router.navigate(['\dashboard']);
       },
       err =>
       {
+        this.snackBar.open(
+        "login not Successful",
+        "undo",
+        { duration: 5000 }
+        )
         console.log("err", err);
       })
     }
