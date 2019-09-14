@@ -7,6 +7,7 @@ import { ResetPasswordComponent } from './Core/Component/reset-password/reset-pa
 import { DashboardComponent } from './Core/Component/dashboard/dashboard.component';
 import { NotesComponent } from './Core/Component/notes/notes.component';
 import { DisplayComponent } from './Core/Component/display/display.component';
+import { TrashComponent } from './Core/Component/trash/trash.component';
 
 const routes: Routes = [
   {
@@ -47,6 +48,10 @@ const routes: Routes = [
         path:'display',
         component:DisplayComponent
       },
+      {
+        path:'trash',
+        component:TrashComponent
+      }
     ]
   },
 ];

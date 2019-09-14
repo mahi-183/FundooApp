@@ -7,17 +7,17 @@
     </span>
     
   <div class="searchbar">
-      <!-- <button mat-icon-button class="fundoo31">
+      <button mat-icon-button class="fundoo31">
           <mat-icon>searchbox</mat-icon>
-      </button> -->
+      </button>
         <input type = "search" class = "input-search" matInput placeholder = "search">
   </div>
 
     <div fxLayoutAlign= "end" style="margin-left: 45pc" fxLayoutGap=40px>
-      <mat-icon>refresh</mat-icon>
-      <mat-icon>list_view</mat-icon>
-      <mat-icon>settings</mat-icon>
-      <mat-icon>view_module</mat-icon>
+      <button mat-icon-button><mat-icon>refresh</mat-icon></button>
+      <button mat-icon-button><mat-icon>list_view</mat-icon></button>
+      <button mat-icon-button><mat-icon>settings</mat-icon></button>
+      <button mat-icon-button><mat-icon>view_module</mat-icon></button>
     </div>
   </mat-toolbar>
 
@@ -33,14 +33,14 @@
           <a mat-list-item routerLink="/login" ><mat-icon>notifications</mat-icon>Reminder</a>
         </div>
         <div>
-            <a mat-list-item routerLink="/login"><mat-icon></mat-icon>Label</a>
+            <a mat-list-item routerLink="/login"><mat-icon> </mat-icon>Label</a>
         </div>
       <div>
-            <a mat-list-item routerLink="/login" ><mat-icon>archive</mat-icon>Archive</a>
+            <a mat-list-item routerLink="archive" ><mat-icon>archive</mat-icon>Archive</a>
         </div>
         
       <div>
-          <a mat-list-item routerLink="/login" ><mat-icon>restore_from_trash</mat-icon>Trash</a>
+          <a mat-list-item routerLink="trash" ><mat-icon>restore_from_trash</mat-icon>Trash</a>
       </div>
       </mat-nav-list>
     </mat-sidenav>

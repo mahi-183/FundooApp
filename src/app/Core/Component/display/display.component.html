@@ -1,6 +1,6 @@
 <div fxLayout="row wrap" style="margin-top: 40px" fxFlexOffset="15" fxLayoutAlign="start center center">
   <div *ngFor="let item of childMessage ">
-    <mat-card class = "displayNote"[ngStyle]="{'background-color':item.color}">
+    <mat-card class = "displayNote" [ngStyle]="{'background-color':item.color}">
       <div fxLayout=" column">
         <div>
           <p>{{item.title}}</p>

@@ -57,7 +57,7 @@ export class HTTPService {
   }
 
   getNotes(url){
-    console.log("inside httpservice",url);
+    console.log("inside httpservice",this.baseUrl1 + url);
     
     let option = {
       headers: new HttpHeaders({
@@ -65,18 +65,20 @@ export class HTTPService {
         'content-Type' : 'application/json'
         }) 
     }
+    // this.baseUrl1 + url
     return this.http.get(this.baseUrl1 + url, option);
   }
 
-  updateNotes(url,data){
-    console.log("inside httpService",data);
+  // updateNotes(url,data){
+  //   console.log("inside httpService",data);
     
-    let option = {
-      headers: new HttpHeaders({
-        'Authorization' : 'bearer ' + localStorage.getItem('token'),
-        'content-Type' : 'application/json'
-        }) 
-    }
-    return this.http.post(this.baseUrl+url,data,option);
-  }
+  //   let option = {
+  //     headers: new HttpHeaders({
+  //       'Authorization' : 'bearer ' + localStorage.getItem('token'),
+  //       'content-Type' : 'application/json'
+  //       }) 
+  //   }
+  //   console.log("token",option);
+  //   return this.http.post(this.baseUrl1+url,data,option);
+  // }
 }

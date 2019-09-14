@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {  FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {  FormBuilder, FormGroup, Validators , FormControl} from '@angular/forms';
 import { Router } from '@angular/router';
 import { NotesService } from '../../Service/NotesService/notes.service';
 import { notes } from '../../Model/notes';
@@ -11,42 +11,53 @@ import { notes } from '../../Model/notes';
 })
 export class TakeANoteComponent implements OnInit {
   toggle:boolean=false;
-  addNoteForm: FormGroup
+  //addNoteForm: FormGroup
   openCard:boolean = true;
   createCard:boolean = false;
   note: notes  = new notes();
+  noteColor;
 
-  constructor(private formBuilder:FormBuilder, private router: Router, private notesService:NotesService) { }
+  constructor(private notesService:NotesService) { }
 
+  title = new FormControl('',[Validators.required])
+  description = new  FormControl('',[Validators.required])
   ngOnInit() {
-    this.addNoteForm = this.formBuilder.group({
-      title: ['',Validators.required],
-      description:['',Validators.required]
-    });
+    // this.addNoteForm = this.formBuilder.group({
+    //   title: ['',Validators.required],
+    //   description:['',Validators.required]
+    // });
     }
   AddNotes(){
     this.toggle=false;
     let data = {
       userId: localStorage.getItem('UserId'),
-      title:this.addNoteForm.controls.title.value,
-      description:this.addNoteForm.controls.description.value
+      title:this.title.value,
+      description:this.description.value,
+     color:this.noteColor
     }
     console.log('data..........', data);
-    if(this.addNoteForm!=null){
+   if(data!=null){
       console.log("iside if condition",data);
       this.notesService.AddNotes(data).subscribe(response=>
         {
           console.log("inside notes service", response);
-          this.router.navigate(['/dashboard/notes']);
+           // this.clearFilters()
+           this.title.reset();
+           this.description.reset();
+       //   this.router.navigate(['/dashboard/notes']);
         })
-    }
-    else
-    {
-    
-    }
-    
+      }
+      else{
+        console.log("notes not added successfuly")
+      }
   }
+
   openMainMatCard(){
     this.toggle=true;
    }
+
+  setcolor($event) {
+    console.log($event, "color")
+    this.noteColor = $event
+  }
 }

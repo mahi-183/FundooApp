@@ -1,22 +1,21 @@
-<form [formGroup]= "addNoteForm">
         <div fxLayout="row" fxLayoutAlign="center center">
-            <mat-card class="fundoo-card" (click)="openMainMatCard()" *ngIf="toggle==false">
+            <mat-card class="fundoo-card" (click)="openMainMatCard()"   [style.background-color]=noteColor *ngIf="toggle==false">
               <div>
-                <input class="noteinput" formControlName="title" placeholder="Take a note....">
+                <input class="noteinput"  placeholder="Take a note....">
               </div>
                
                </mat-card>
-               <mat-card class="fundoo-card" *ngIf="toggle==true">
+               <mat-card  [style.background-color]=noteColor class="fundoo-card" *ngIf="toggle==true">
                  <div fxLayout="column" fxLayoutAlign="start">
-                 <div><input class="noteinput" formControlName="title" placeholder="Take a note...."></div>
-                 <div><textarea formControlName="description" placeholder="description" [ngStyle.md]="{'width.px': 100 }"
+                 <div><input  class="noteinput" [style.background-color]=noteColor [formControl] ="title" placeholder="Take a note...."></div>
+                 <div><textarea [style.background-color]=noteColor [formControl]="description" placeholder="description" [ngStyle.md]="{'width.px': 100 }"
                   style="width: 400px; outline: none; overflow: hidden; border:none" [mat-autosize] autofocus></textarea></div>
                  
                 </div>
                 <div></div>
-                <div fxFlexLayout="row" >
+                <div fxFlexLayout="row" [style.background-color]=noteColor >
                   <div fxFlex="90" style ="padding-top: 11px;">
-                    <app-icon></app-icon>
+                    <app-icon (selectedColor)="setcolor($event)" ></app-icon>
                   </div>
                     <div fxFlex="10" >
                         <button mat-button (click)="AddNotes()">close</button>
@@ -24,4 +23,3 @@
                   </div>
                </mat-card>
         </div>
-      </form>

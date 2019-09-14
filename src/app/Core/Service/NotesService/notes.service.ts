@@ -20,6 +20,12 @@ export class NotesService {
 
   updateNotes(id,data){
     console.log("inside notes service",data);
-    return this.httpService.updateNotes('Notes/UpdateNotes?id='+ id, data);
+    return this.httpService.postNotes('Notes/UpdateNotes?id='+ id, data);
+  }
+
+  getAllTrashNotes(id,noteType){
+    console.log("inside note service noteType",noteType);
+    console.log("inside note service userId",id);
+    return this.httpService.getNotes('Notes/GetNotes?userId='+id+'&noteType='+noteType);
   }
 }

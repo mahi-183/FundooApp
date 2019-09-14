@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NotesService } from '../../Service/NotesService/notes.service';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-icon',
@@ -8,11 +9,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./icon.component.scss']
 })
 export class IconComponent implements OnInit {
-  @Input() childMessageIcon; 
+  @Input() childMessageIcon;
+  @Input() childMessageTrash;
   message;
-  @Output() colorChanged = new EventEmitter();
   @Output() selectedColor = new EventEmitter();
-  constructor(private notesService:NotesService, private router:Router) { }
+  constructor(private notesService:NotesService, private snackbar:MatSnackBar) { }
   colorArray : any[] = [
     [
       {color:"#f06292"},
@@ -30,28 +31,45 @@ export class IconComponent implements OnInit {
   }
 
   setcolor(color: any) {
-    console.log("color Array",this.colorArray)
-    if(this.childMessageIcon.id==undefined){
-        console.log("inside card data",this.childMessageIcon.id);
-        
+    ////check childMessage data is undefined or not
+    if(this.childMessageIcon == undefined){
+        console.log("inside card data",this.childMessageIcon);
+        this.selectedColor.emit(color);
     }
     else{
-    console.log(this.childMessageIcon,"card")
-    this.childMessageIcon.color = color;
-    this.childMessageIcon.color = this.childMessageIcon.color;
-    console.log("childMessage id",this.childMessageIcon.id);
     var data = {
       "color":this.childMessageIcon.color,
       "id":this.childMessageIcon.id
     }
+
     this.notesService.updateNotes(this.childMessageIcon.id, data).subscribe(data =>{
-      console.log("inside icon data",data);
-      console.log("inside icon data",this.childMessageIcon);
-      // this.router.navigate(['\dashboard\display'])
       this.selectedColor.emit(color);
-    },err=>{
-      console.log(err);
+      this.snackbar.open("Set Color Successfull","undo",
+      { duration: 5000 });
+    },
+    err=>{
+      this.snackbar.open("Set Color Successfull","undo",
+      { duration: 5000 });
     })
   }
+  }
+
+  Trash(){
+    this.childMessageIcon.noteType=1;
+    var data = {
+      "id":this.childMessageIcon.id,
+      "noteType":1
+    }
+    
+    this.notesService.updateNotes(this.childMessageIcon.id,this.childMessageIcon).subscribe(response=>
+      {
+        this.snackbar.open("moved note to trash","undo",
+          { duration: 5000 }
+          )
+      }),error=>{
+        this.snackbar.open("notes not moved to trash","undo",
+          { duration: 5000 }
+          )
+      }
   }
 }

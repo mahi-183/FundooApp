@@ -6,6 +6,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatListModule} from '@angular/material/list';
+import { ReactiveFormsModule,FormsModule } from '@angular/forms';
+
 
 @NgModule({
     
@@ -20,7 +22,10 @@ import {MatListModule} from '@angular/material/list';
         MatSnackBarModule,
         MatMenuModule,
         MatSidenavModule,
-        MatToolbarModule
+        MatToolbarModule,
+        ReactiveFormsModule,
+        FormsModule
+
     ],
     exports: [
         MatFormFieldModule,
@@ -33,7 +38,11 @@ import {MatListModule} from '@angular/material/list';
         MatButtonModule,
         MatSnackBarModule,
         MatListModule,
-        MatMenuModule
+        MatMenuModule,
+        ReactiveFormsModule,
+        FormsModule
+
+
     ],
     providers: [],
   })

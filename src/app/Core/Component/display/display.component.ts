@@ -8,7 +8,6 @@ import { Component, OnInit, Input, Output,EventEmitter } from '@angular/core';
 export class DisplayComponent implements OnInit {
   @Input() childMessage; 
 
-
   @Output() colorEmitted = new EventEmitter <any>()
   constructor() { }
 
@@ -16,6 +15,6 @@ export class DisplayComponent implements OnInit {
   
   }
   setColor(event){
-    this.colorEmitted.emit({});
+    this.colorEmitted.emit(event);
   }
 }

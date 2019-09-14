@@ -9,7 +9,6 @@ import { RegistrationComponent } from './Core/Component/registration/registratio
 import { MaterialModule } from '../app/app.material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './Core/Component/login/login.component';
 import { ForgotPasswordComponent } from './Core/Component/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './Core/Component/reset-password/reset-password.component';
@@ -21,6 +20,7 @@ import { TrashComponent } from './Core/Component/trash/trash.component';
 import { TakeANoteComponent } from './Core/Component/take-a-note/take-a-note.component';
 import { DisplayComponent } from './Core/Component/display/display.component';
 import { IconComponent } from './Core/Component/icon/icon.component';
+import { ArchiveComponent } from './Core/Component/archive/archive.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +36,9 @@ import { IconComponent } from './Core/Component/icon/icon.component';
     TrashComponent,
     TakeANoteComponent,
     DisplayComponent,
-    IconComponent
+    IconComponent,
+    ArchiveComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -44,9 +46,8 @@ import { IconComponent } from './Core/Component/icon/icon.component';
     BrowserAnimationsModule,
     MatSidenavModule,
     MaterialModule, 
-    ReactiveFormsModule,
     FlexLayoutModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
