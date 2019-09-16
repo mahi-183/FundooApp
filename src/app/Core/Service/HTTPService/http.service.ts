@@ -68,17 +68,4 @@ export class HTTPService {
     // this.baseUrl1 + url
     return this.http.get(this.baseUrl1 + url, option);
   }
-
-  // updateNotes(url,data){
-  //   console.log("inside httpService",data);
-    
-  //   let option = {
-  //     headers: new HttpHeaders({
-  //       'Authorization' : 'bearer ' + localStorage.getItem('token'),
-  //       'content-Type' : 'application/json'
-  //       }) 
-  //   }
-  //   console.log("token",option);
-  //   return this.http.post(this.baseUrl1+url,data,option);
-  // }
 }

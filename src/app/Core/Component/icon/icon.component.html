@@ -1,30 +1,53 @@
-<div  fxLayout="row" fxLayoutAlign="space-around center">
-  <button mat-icon-button><mat-icon>add_alert</mat-icon></button>
-  <button mat-icon-button><mat-icon>person_add</mat-icon></button>
-  <button mat-button  [matMenuTriggerFor] ="aboveMenu">
-    <mat-icon>color_lens</mat-icon>
-    <mat-menu #aboveMenu="matMenu" yPosition="above">
-        <div fxLayout="row wrap" >
-          <div *ngFor = "let color of colorArray">
-            <div  *ngFor= "let itemcolor of color" >
-             <div class="mat-icon-color"
-             [ngStyle]="{'background': itemcolor.color }"  (click)="setcolor(itemcolor.color)"></div>
-
-            </div>
-          </div>
-        </div>
-        </mat-menu>
-     </button>
-  <button mat-icon-button><mat-icon>photo</mat-icon></button>
-  <button mat-icon-button><mat-icon>archive</mat-icon>
-    
-  </button>
-  
-  <button mat-button [matMenuTriggerFor] = "aboveMenu1">
-    <mat-icon>more_vert</mat-icon>
-      <mat-menu #aboveMenu1="matMenu">
-        <button mat-menu-item>Add Label</button>
-        <button mat-menu-item (click) = "Trash()">Delete</button>
+<div fxLayout="row">
+  <!-- set reminder for notes -->
+  <button mat-icon-button [matMenuTriggerFor]="reminder" style="outline: none">
+    <mat-icon *ngIf = "!hideIcon">add_alert</mat-icon>
+    <mat-menu #reminder="matMenu">
+        <button  mat-menu-item (click)="Today(childMessageIcon)" style="outline: none">Later today 8:00PM </button>
+        <button mat-menu-item (click)="Tomorrow(childMessageIcon)" style="outline: none">Tomorrow 8:00AM</button>
+        <button mat-menu-item (click)="nextWeek(childMessageIcon)" style="outline: none">Next Week 8:00AM</button>
+        <button mat-menu-item style="outline: none">Pick date & time</button>
     </mat-menu>
   </button>
-  
+
+  <!-- Add collaborators -->
+  <button mat-icon-button>
+    <mat-icon *ngIf = "!hideIcon">person_add</mat-icon>
+   
+  </button>
+
+  <!-- color array -->
+  <button mat-button [matMenuTriggerFor]="aboveMenu">
+    <mat-icon *ngIf = "!hideIcon">color_lens</mat-icon>
+    <mat-menu #aboveMenu="matMenu" yPosition="above">
+      <div fxLayout="row wrap">
+        <div *ngFor="let color of colorArray">
+          <div *ngFor="let itemcolor of color">
+            <div class="mat-icon-color" [ngStyle]="{'background': itemcolor.color }"
+              (click)="setcolor(itemcolor.color)"></div>
+
+          </div>
+        </div>
+      </div>
+    </mat-menu>
+  </button>
+  <!-- photo icon button -->
+  <button mat-icon-button>
+    <mat-icon *ngIf = "!hideIcon">photo</mat-icon>
+  </button>
+
+  <!-- archive notes icon button -->
+  <button mat-icon-button (click)="Archive()">
+    <mat-icon *ngIf = "!hideIcon">archive</mat-icon>
+  </button>
+
+  <!-- more_vert mat-menu -->
+  <button mat-button [matMenuTriggerFor]="aboveMenu1">
+    <mat-icon>more_vert</mat-icon>
+    <mat-menu #aboveMenu1="matMenu">
+      <button *ngIf = "!hideIcon" mat-menu-item>Add Label</button>
+      <button *ngIf = "!hideIcon" mat-menu-item (click)="Trash()">Delete</button>
+      <button  *ngIf = "hideIcon" mat-menu-item (click)="Restore()">Restore</button>
+      <button  *ngIf = "hideIcon" mat-menu-item (click)="DeleteForever()">Delete_Forever</button>
+    </mat-menu>
+  </button>

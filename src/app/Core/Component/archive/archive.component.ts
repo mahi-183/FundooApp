@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NotesService } from '../../Service/NotesService/notes.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-archive',
@@ -6,10 +8,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./archive.component.scss']
 })
 export class ArchiveComponent implements OnInit {
-
-  constructor() { }
+userId;
+noteType;
+archiveNotesArray;
+  constructor(private noteService:NotesService, private snackbar:MatSnackBar) { }
 
   ngOnInit() {
+    this.GetAllArchiveNotes();
   }
 
+ 
+  GetAllArchiveNotes(){
+    console.log("inside the archive notes component");
+     this.userId = localStorage.getItem('UserId');
+    this.noteType = 2;
+    this.noteService.getAllNotesByType(this.userId,this.noteType).subscribe(response=>{
+      console.log("the notes data", response);
+      this.archiveNotesArray = response;
+      console.log("notes array",this.archiveNotesArray);
+      this.snackbar.open("notes move to trash succeffully",
+      "undo",
+      { duration: 5000 }
+      )
+    });
+  }
 }

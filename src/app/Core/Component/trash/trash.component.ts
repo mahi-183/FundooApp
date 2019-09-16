@@ -21,7 +21,7 @@ export class TrashComponent implements OnInit {
     console.log("inside the trash notes component");
      this.userId = localStorage.getItem('UserId');
     this.noteType = 1;
-    this.notesService.getAllTrashNotes(this.userId,this.noteType).subscribe(response=>{
+    this.notesService.getAllNotesByType(this.userId,this.noteType).subscribe(response=>{
       console.log("the notes data", response);
       this.trashNotesArray = response;
       console.log("notes array",this.trashNotesArray);

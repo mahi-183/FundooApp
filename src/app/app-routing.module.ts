@@ -8,6 +8,8 @@ import { DashboardComponent } from './Core/Component/dashboard/dashboard.compone
 import { NotesComponent } from './Core/Component/notes/notes.component';
 import { DisplayComponent } from './Core/Component/display/display.component';
 import { TrashComponent } from './Core/Component/trash/trash.component';
+import { ArchiveComponent } from './Core/Component/archive/archive.component';
+import { RemindersComponent } from './Core/Component/reminders/reminders.component';
 
 const routes: Routes = [
   {
@@ -51,6 +53,14 @@ const routes: Routes = [
       {
         path:'trash',
         component:TrashComponent
+      },
+      {
+        path:'archive',
+        component:ArchiveComponent
+      },
+      {
+        path:'reminder',
+        component:RemindersComponent
       }
     ]
   },

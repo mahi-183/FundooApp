@@ -11,12 +11,9 @@ import { notes } from '../../Model/notes';
 })
 export class TakeANoteComponent implements OnInit {
   toggle:boolean=false;
-  //addNoteForm: FormGroup
-  openCard:boolean = true;
-  createCard:boolean = false;
   note: notes  = new notes();
   noteColor;
-
+  noteType;
   constructor(private notesService:NotesService) { }
 
   title = new FormControl('',[Validators.required])
@@ -33,7 +30,7 @@ export class TakeANoteComponent implements OnInit {
       userId: localStorage.getItem('UserId'),
       title:this.title.value,
       description:this.description.value,
-     color:this.noteColor
+      color:this.noteColor
     }
     console.log('data..........', data);
    if(data!=null){
@@ -44,6 +41,7 @@ export class TakeANoteComponent implements OnInit {
            // this.clearFilters()
            this.title.reset();
            this.description.reset();
+           this.noteColor='';
        //   this.router.navigate(['/dashboard/notes']);
         })
       }
@@ -59,5 +57,10 @@ export class TakeANoteComponent implements OnInit {
   setcolor($event) {
     console.log($event, "color")
     this.noteColor = $event
+  }
+  
+  setNoteType($event) {
+    console.log($event, "color")
+    this.setNoteType = $event
   }
 }

@@ -10,8 +10,8 @@
         </div>
       </div>
 
-      <div>
-        <app-icon [childMessageIcon]="item" (selectedColor)="setColor($event)"></app-icon>
+      <div class="icon" >
+        <app-icon [childMessageIcon]="item" (selectedColor)="setColor($event)"  [hideIcon] = "hideIcon"></app-icon>
       </div>
 
     </mat-card>

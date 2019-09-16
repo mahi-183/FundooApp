@@ -7,6 +7,7 @@ import { Component, OnInit, Input, Output,EventEmitter } from '@angular/core';
 })
 export class DisplayComponent implements OnInit {
   @Input() childMessage; 
+  @Input() hideIcon;
 
   @Output() colorEmitted = new EventEmitter <any>()
   constructor() { }

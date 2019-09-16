@@ -23,9 +23,17 @@ export class NotesService {
     return this.httpService.postNotes('Notes/UpdateNotes?id='+ id, data);
   }
 
-  getAllTrashNotes(id,noteType){
-    console.log("inside note service noteType",noteType);
-    console.log("inside note service userId",id);
+  getAllNotesByType(id,noteType){
     return this.httpService.getNotes('Notes/GetNotes?userId='+id+'&noteType='+noteType);
+  }
+
+  deleteNotes(id){
+    console.log("inside notes delete service",id)
+    return this.httpService.postNotes('Notes/DeleteNotes?id='+id,id);
+  }
+
+  getAllReminderNotes(userId){
+    console.log("inside notes delete service",userId)
+    return this.httpService.getNotes('Notes/Reminder?userId='+userId);
   }
 }

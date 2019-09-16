@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import {MediaMatcher} from '@angular/cdk/layout';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,7 +17,7 @@ export class DashboardComponent implements OnInit {
      
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private router:Router) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -28,14 +29,13 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
   }
-  Reminders(){
-    alert("working on it!");
+
+  signOut(){
+    localStorage.clear();
+    this.router.navigate(['login']);
   }
-  Edit_labels(){
-    alert("working on it!");
+  refresh(){
+    location.reload();
   }
   
-  Archive(){
-    alert("working on it!");
-  }
 }
