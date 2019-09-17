@@ -123,6 +123,7 @@ export class IconComponent implements OnInit {
           )
       }
   }
+  
   DeleteForever(){
     var data = {
       "id":this.childMessageIcon.id

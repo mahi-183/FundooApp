@@ -48,15 +48,13 @@
       </button>
       <input type="search" class="input-search" matInput placeholder="search">
     </div> -->
-
-
     
     <div  fxLayout = "row" fxFlex="100">
         <div style="width: 600px" fxflex="50" class="searchbar" >
             <button mat-icon-button class="fundoo31">
                 <mat-icon>searchbox</mat-icon>
             </button>
-              <input type="search"  class = "input-search" matInput placeholder="search">
+              <input (keyup)="search($event)" type="search"  class = "input-search" matInput placeholder="search">
           </div>
    
         <div  fxLayout="row" fxFlex="100" fxLayoutGap="10px" fxLayoutAlign="end center " >
@@ -72,10 +70,31 @@
                 </button>
           </div>
           <div >
-              <button mat-fab (click) = "signOut()">logout</button>
+              <img [matMenuTriggerFor]="aboveMenu1" style="cursor: pointer;" mat-card-avatar src="http://res.cloudinary.com/bridgelabz-com/image/upload/v1568721559/grmc2cocs8e84vk5vhvk.jpg">
+                  <mat-menu #aboveMenu1="matMenu">  
+                    <div fxFlayout="row" fxFlex = 100>
+                      <img style="cursor: pointer; width: 100px;height:100px;border-radius: 50%;" mat-card-avatar src="http://res.cloudinary.com/bridgelabz-com/image/upload/v1568721559/grmc2cocs8e84vk5vhvk.jpg">
+
+                      <!-- <button mat-menu-item>Add Label</button>
+                  <button  mat-menu-item>Delete</button> -->
+                  <div>
+                      <div class="profileName">
+                        {{FirstName}}
+                      </div>
+                      <div class="profileEmail">
+                        {{Email}}
+                      </div>
+                    </div>
+                  </div>
+                  <mat-divider></mat-divider>
+                  <button class="signout"  style="margin-left: 192px"mat-button (click)="signOut()">
+                    Sign out
+                  </button>
+                </mat-menu>
+
+              <!-- <button mat-fab (click) = "signOut()">logout</button> -->
           </div>
         </div>
-    
     </div>
 
   </mat-toolbar>
@@ -116,3 +135,4 @@
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>
+

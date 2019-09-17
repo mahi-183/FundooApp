@@ -7,8 +7,8 @@
              </mat-card>
              <mat-card  [style.background-color]=noteColor class="fundoo-card" *ngIf="toggle==true">
                <div fxLayout="column" fxLayoutAlign="start">
-               <div><input  class="noteinput" [style.background-color]=noteColor [formControl] ="title" placeholder="Take a note...."></div>
-               <div><textarea [style.background-color]=noteColor [formControl]="description" placeholder="description" [ngStyle.md]="{'width.px': 100 }"
+               <div><input  class="noteinput" [style.background-color]=noteColor [formControl] ="title" placeholder="Title...."></div>
+               <div><textarea [style.background-color]=noteColor [formControl]="description" placeholder="Take a note" [ngStyle.md]="{'width.px': 100 }"
                 style="width: 400px; outline: none; overflow: hidden; border:none" [mat-autosize] autofocus></textarea></div>
                
               </div>

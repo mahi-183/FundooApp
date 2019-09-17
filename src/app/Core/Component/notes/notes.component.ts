@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class NotesComponent implements OnInit {
   userId;
   notesArray;
+  noteType;
   constructor(private notesService:NotesService, private router:Router) { }
 
   ngOnInit() {
@@ -18,8 +19,9 @@ export class NotesComponent implements OnInit {
   
   GetAllNotes(){
     console.log("inside the notes component");
-     this.userId = localStorage.getItem('UserId');
-    this.notesService.getAllNotes(this.userId).subscribe(response=>{
+    this.userId = localStorage.getItem('UserId');
+    this.noteType = 0;
+     this.notesService.getAllNotes(this.userId,this.noteType).subscribe(response=>{
       console.log("the notes data", response);
       this.notesArray = response;
       console.log("notes array",this.notesArray);

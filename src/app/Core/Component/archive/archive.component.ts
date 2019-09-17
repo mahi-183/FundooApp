@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { NotesService } from '../../Service/NotesService/notes.service';
 import { MatSnackBar } from '@angular/material';
 
@@ -11,12 +11,12 @@ export class ArchiveComponent implements OnInit {
 userId;
 noteType;
 archiveNotesArray;
+@Output() archiveUpdate = new EventEmitter();
   constructor(private noteService:NotesService, private snackbar:MatSnackBar) { }
 
   ngOnInit() {
     this.GetAllArchiveNotes();
   }
-
  
   GetAllArchiveNotes(){
     console.log("inside the archive notes component");
@@ -31,5 +31,9 @@ archiveNotesArray;
       { duration: 5000 }
       )
     });
+  }
+  Archived($event)
+  {
+     
   }
 }

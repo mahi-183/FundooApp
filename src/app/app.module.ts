@@ -21,6 +21,7 @@ import { TakeANoteComponent } from './Core/Component/take-a-note/take-a-note.com
 import { DisplayComponent } from './Core/Component/display/display.component';
 import { IconComponent } from './Core/Component/icon/icon.component';
 import { ArchiveComponent } from './Core/Component/archive/archive.component';
+import { SearchComponent } from './Core/Component/serach/search/search.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { ArchiveComponent } from './Core/Component/archive/archive.component';
     DisplayComponent,
     IconComponent,
     ArchiveComponent,
+    SearchComponent,
     
   ],
   imports: [

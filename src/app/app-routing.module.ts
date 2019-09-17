@@ -10,6 +10,7 @@ import { DisplayComponent } from './Core/Component/display/display.component';
 import { TrashComponent } from './Core/Component/trash/trash.component';
 import { ArchiveComponent } from './Core/Component/archive/archive.component';
 import { RemindersComponent } from './Core/Component/reminders/reminders.component';
+import { SearchComponent } from './Core/Component/serach/search/search.component';
 
 const routes: Routes = [
   {
@@ -61,6 +62,10 @@ const routes: Routes = [
       {
         path:'reminder',
         component:RemindersComponent
+      },
+      {
+        path:'search',
+        component:SearchComponent
       }
     ]
   },
