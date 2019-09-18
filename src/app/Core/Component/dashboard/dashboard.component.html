@@ -1,34 +1,4 @@
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches" fxFlex='100'>
-  <!-- <mat-toolbar class="example-toolbar" fxLayout = "row" fxLayoutAlign="center center">
-    <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
-    <img class="gb_pa gb_de gb_za" alt="" aria-hidden="true" src="https://www.gstatic.com/images/branding/product/1x/keep_48dp.png" srcset="https://www.gstatic.com/images/branding/product/1x/keep_48dp.png 1x, https://www.gstatic.com/images/branding/product/2x/keep_48dp.png 2x " style="width:40px;height:40px">
-    <span>
-    <h1 class="example-app-name">FundooApp</h1>
-    </span>
-    
-  <div class="searchbar">
-      <button mat-icon-button class="fundoo31">
-          <mat-icon>searchbox</mat-icon>
-      </button>
-        <input type = "search" class = "input-search" matInput placeholder = "search">
-  </div>
-
-    <div fxLayoutAlign= "end">
-      <button mat-icon-button (click)="refresh()"><mat-icon>refresh</mat-icon></button>
-      <button mat-icon-button ><mat-icon>list_view</mat-icon></button>
-      <button mat-icon-button style="outline: none" fxHide.xs=true>
-        <mat-icon>
-          <img style="margin-bottom: 10px" src="../../assets/image/Grid.svg" *ngIf="!islist" />
-          <img style="margin-bottom: 10px" src="../../assets/image/list.svg"/>
-        </mat-icon>
-      </button>
-      <button mat-icon-button><mat-icon>settings</mat-icon></button>
-      <button mat-icon-button><mat-icon>view_module</mat-icon></button>
-      <button mat-fab (click) = "signOut()">logout</button>
-    </div>
-  </mat-toolbar> -->
-
-  <!-- mat toolbar -->
   <mat-toolbar class="example-toolbar">
     <button mat-icon-button (click)="snav.toggle()">
       <mat-icon>menu</mat-icon>
@@ -41,26 +11,22 @@
       <h1 class="example-app-name">FundooNotes</h1>
     </span>
 
-    <!-- Search bar -->
-    <!-- <div class="searchbar">
-      <button mat-icon-button class="fundoo31">
-        <mat-icon>searchbox</mat-icon>
-      </button>
-      <input type="search" class="input-search" matInput placeholder="search">
-    </div> -->
-    
     <div  fxLayout = "row" fxFlex="100">
+        <!-- serch the notes with title and description -->
         <div style="width: 600px" fxflex="50" class="searchbar" >
             <button mat-icon-button class="fundoo31">
                 <mat-icon>searchbox</mat-icon>
             </button>
               <input (keyup)="search($event)" type="search"  class = "input-search" matInput placeholder="search">
-          </div>
+        </div>
    
+          <!-- refresh the page  -->
         <div  fxLayout="row" fxFlex="100" fxLayoutGap="10px" fxLayoutAlign="end center " >
           <div >
               <button mat-icon-button (click)="refresh()"><mat-icon>refresh</mat-icon></button>
           </div>
+
+          <!-- Grid view list of the notes -->
           <div >
               <button mat-icon-button style="outline: none" fxHide.xs=true>
                   <mat-icon>
@@ -69,39 +35,51 @@
                   </mat-icon>
                 </button>
           </div>
-          <div >
+
+          <!-- Profile pic upload -->
+          <div>
               <img [matMenuTriggerFor]="aboveMenu1" style="cursor: pointer;" mat-card-avatar src="http://res.cloudinary.com/bridgelabz-com/image/upload/v1568721559/grmc2cocs8e84vk5vhvk.jpg">
                   <mat-menu #aboveMenu1="matMenu">  
-                    <div fxFlayout="row" fxFlex = 100>
-                      <img style="cursor: pointer; width: 100px;height:100px;border-radius: 50%;" mat-card-avatar src="http://res.cloudinary.com/bridgelabz-com/image/upload/v1568721559/grmc2cocs8e84vk5vhvk.jpg">
-
-                      <!-- <button mat-menu-item>Add Label</button>
-                  <button  mat-menu-item>Delete</button> -->
-                  <div>
-                      <div class="profileName">
-                        {{FirstName}}
+                   
+                    <div fxLayout="row" fxLayoutAlign="space-between center"  fxFlex = 100>
+                      <div>
+                      <img mat-card-avatar src="{{Image}}" (click)="openDialog()"
+                       style="cursor: pointer; width: 100px;height:100px;border-radius: 50%;">
                       </div>
-                      <div class="profileEmail">
-                        {{Email}}
-                      </div>
+                        <div>
+                          <div class="profileName">
+                              {{FirstName}}
+                          </div>
+                          <div class="profileEmail">
+                              {{Email}}
+                          </div>
+                        </div>
                     </div>
-                  </div>
+                  
                   <mat-divider></mat-divider>
-                  <button class="signout"  style="margin-left: 192px"mat-button (click)="signOut()">
+                  <div fxLayout = "row" fxLayoutAlign="space-between center">
+                  
+                    <button class="signout"mat-button (click)="AddAccount()">
+                    Add Account
+                  </button>
+                  <!-- <button class="signout"  style="margin-left: 192px"mat-button (click)="signOut()"> -->
+                    <button class="signout" mat-button (click)="signOut()">
                     Sign out
                   </button>
+                  </div>
+                  
                 </mat-menu>
-
-              <!-- <button mat-fab (click) = "signOut()">logout</button> -->
           </div>
         </div>
     </div>
 
   </mat-toolbar>
+<mat-divider></mat-divider>
+
 
   <!-- side navigation -->
+
   <mat-sidenav-container class="example-sidenav-container" fxFlex='100'>
-    <!-- [style.marginTop.px]="mobileQuery.matches ? 56 : 0"> -->
     <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
       fixedTopGap="56">
       <mat-nav-list class="SideNav" style="width:140px">
@@ -113,9 +91,11 @@
             <mat-icon>notifications</mat-icon>Reminder
           </a>
         </div>
+        <mat-divider></mat-divider>
         <div>
           <a mat-list-item routerLink="/login"><img src="../../../assets/image/edit.svg">Label</a>
         </div>
+        <mat-divider></mat-divider>
         <div>
           <a mat-list-item routerLink="archive">
             <mat-icon>archive</mat-icon>Archive

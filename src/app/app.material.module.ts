@@ -7,7 +7,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatListModule} from '@angular/material/list';
 import { ReactiveFormsModule,FormsModule } from '@angular/forms';
-
+import {MatDialogModule} from '@angular/material/dialog';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 @NgModule({
     
@@ -24,8 +25,9 @@ import { ReactiveFormsModule,FormsModule } from '@angular/forms';
         MatSidenavModule,
         MatToolbarModule,
         ReactiveFormsModule,
-        FormsModule
-
+        FormsModule,
+        MatDialogModule,
+        ImageCropperModule
     ],
     exports: [
         MatFormFieldModule,
@@ -40,9 +42,9 @@ import { ReactiveFormsModule,FormsModule } from '@angular/forms';
         MatListModule,
         MatMenuModule,
         ReactiveFormsModule,
-        FormsModule
-
-
+        FormsModule,
+        MatDialogModule,
+        ImageCropperModule
     ],
     providers: [],
   })

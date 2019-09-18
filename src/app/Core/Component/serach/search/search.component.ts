@@ -28,7 +28,7 @@ export class SearchComponent implements OnInit {
     this.notesService.SearchNotes(this.userId, this.searchValue).subscribe(response=>{
       console.log("response",response);
       this.searchNoteArray=response['result'];
-      console.log("search array responseeeeeeeeeee",response['result'])
+      console.log("search array response",response['result'])
       console.log("search array",this.searchNoteArray)
     })
   }

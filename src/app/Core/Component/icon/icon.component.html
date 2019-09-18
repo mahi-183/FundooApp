@@ -1,7 +1,7 @@
 <div fxLayout="row">
   <!-- set reminder for notes -->
-  <button mat-icon-button [matMenuTriggerFor]="reminder" style="outline: none">
-    <mat-icon *ngIf = "!hideIcon">add_alert</mat-icon>
+  <button *ngIf = "!hideIcon" mat-icon-button [matMenuTriggerFor]="reminder" style="outline: none">
+    <mat-icon>add_alert</mat-icon>
     <mat-menu #reminder="matMenu">
         <button  mat-menu-item (click)="Today(childMessageIcon)" style="outline: none">Later today 8:00PM </button>
         <button mat-menu-item (click)="Tomorrow(childMessageIcon)" style="outline: none">Tomorrow 8:00AM</button>
@@ -11,14 +11,14 @@
   </button>
 
   <!-- Add collaborators -->
-  <button mat-icon-button>
-    <mat-icon *ngIf = "!hideIcon">person_add</mat-icon>
+  <button *ngIf = "!hideIcon"mat-icon-button>
+    <mat-icon >person_add</mat-icon>
    
   </button>
 
   <!-- color array -->
-  <button mat-button [matMenuTriggerFor]="aboveMenu">
-    <mat-icon *ngIf = "!hideIcon">color_lens</mat-icon>
+  <button *ngIf = "!hideIcon" mat-button [matMenuTriggerFor]="aboveMenu">
+    <mat-icon >color_lens</mat-icon>
     <mat-menu #aboveMenu="matMenu" yPosition="above">
       <div fxLayout="row wrap">
         <div *ngFor="let color of colorArray">
@@ -32,13 +32,13 @@
     </mat-menu>
   </button>
   <!-- photo icon button -->
-  <button mat-icon-button>
-    <mat-icon *ngIf = "!hideIcon">photo</mat-icon>
+  <button *ngIf = "!hideIcon" mat-icon-button>
+    <mat-icon>photo</mat-icon>
   </button>
 
   <!-- archive notes icon button -->
-  <button mat-icon-button (click)="Archive()">
-    <mat-icon *ngIf = "!hideIcon">archive</mat-icon>
+  <button *ngIf = "!hideIcon" mat-icon-button (click)="Archive()">
+    <mat-icon >archive</mat-icon>
   </button>
 
   <!-- more_vert mat-menu -->

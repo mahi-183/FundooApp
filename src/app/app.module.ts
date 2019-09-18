@@ -22,6 +22,7 @@ import { DisplayComponent } from './Core/Component/display/display.component';
 import { IconComponent } from './Core/Component/icon/icon.component';
 import { ArchiveComponent } from './Core/Component/archive/archive.component';
 import { SearchComponent } from './Core/Component/serach/search/search.component';
+import { ProfiledialogComponent } from './Core/Component/profiledialog/profiledialog.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { SearchComponent } from './Core/Component/serach/search/search.component
     IconComponent,
     ArchiveComponent,
     SearchComponent,
+    ProfiledialogComponent,
     
   ],
   imports: [
@@ -51,7 +53,9 @@ import { SearchComponent } from './Core/Component/serach/search/search.component
     FlexLayoutModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [],  
+  entryComponents: [ProfiledialogComponent],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
