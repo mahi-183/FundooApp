@@ -1,11 +1,40 @@
 <div>
-  
-  <div>
-    <h4>Select profile photo</h4>
-  </div>
-
+  <div fxLayout = "row" fxLayoutAlign="space-between center" >
+   <div class = "heading" fxLayoutAlign = "start">
+      Select profile photo
+   </div >
+   <div fxLayoutAlign="end" >
+    <button mat-button (click) = "onNoClick()"><img src = "../../../../assets/image/cancel.svg"></button>
+   </div>
+   </div>
+   <div fxLayout="row" fxLayoutAlign="start end">
+    Upload Photos
+   </div>
+   <!-- devider for main content -->
   <mat-divider></mat-divider>
-  <div>
-      <button mat-button  (click)="  onNoClick()">close</button>
+  <div >
+      <input type="file" (change)="fileChangeEvent($event)" />
+      <image-cropper
+          [imageChangedEvent]="imageChangedEvent"
+          [maintainAspectRatio]="true"
+          [aspectRatio]="4 / 3"
+          [resizeToWidth]="128"
+          format="png"
+          (imageCropped)="imageCropped($event)"
+          
+      ></image-cropper>
+      <img [src]="croppedImage" />
+  </div>
+  <!-- divider of the div -->
+  <mat-divider></mat-divider>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+
+    <div fxLayoutAlign="start center">
+      <button mat-raised-button color = "primary"  (click)="onUpload()">set as a profile photo</button>
+    </div>
+    <div fxLayoutAlign="end center">
+      <button mat-button (click)="onNoClick()">close</button>
+    </div>
+
   </div> 
 </div>

@@ -65,12 +65,12 @@ export class DashboardComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(ProfiledialogComponent, {
       width: '500px',
-      height:'550px'
       
       // data: {name: this.name, animal: this.animal}
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      this.Image = result['imageUrl'];
       console.log('The dialog was closed');
       // this.animal = result;
     });

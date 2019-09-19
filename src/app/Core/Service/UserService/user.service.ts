@@ -26,4 +26,10 @@ export class UserService {
     console.log("inside user service",data)
     return this.httpService.post('AccountUser/ResetPassword',data)
   }
+  uploadImage(userId,uploadData)
+  {
+    console.log("inside user service userId",userId);
+    console.log("inside user service uploadData",uploadData);
+    return this.httpService.postProfile('AccountUser/ImageUpload?userId='+userId,uploadData);
+  }
 }

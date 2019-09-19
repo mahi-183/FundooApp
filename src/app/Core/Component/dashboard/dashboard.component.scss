@@ -90,7 +90,11 @@ h1.example-app-name {
     width: 10%;
     display: block;
     padding: 34px;
-    margin-left: -28px;
+    margin-left: -32px;
     margin-top: -28px;
     opacity: 0.6;
+    overflow: none
+  }
+  .profile{
+    overflow: hidden;
   }

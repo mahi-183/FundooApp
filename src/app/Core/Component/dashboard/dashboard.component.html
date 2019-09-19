@@ -38,10 +38,10 @@
 
           <!-- Profile pic upload -->
           <div>
-              <img [matMenuTriggerFor]="aboveMenu1" style="cursor: pointer;" mat-card-avatar src="http://res.cloudinary.com/bridgelabz-com/image/upload/v1568721559/grmc2cocs8e84vk5vhvk.jpg">
+              <img [matMenuTriggerFor]="aboveMenu1" style="cursor: pointer;" mat-card-avatar src="{{Image}}">
                   <mat-menu #aboveMenu1="matMenu">  
                    
-                    <div fxLayout="row" fxLayoutAlign="space-between center"  fxFlex = 100>
+                    <div class = "profile" fxLayout="row" fxLayoutAlign="space-between center"  fxFlex = 100>
                       <div>
                       <img mat-card-avatar src="{{Image}}" (click)="openDialog()"
                        style="cursor: pointer; width: 100px;height:100px;border-radius: 50%;">
@@ -92,6 +92,7 @@
           </a>
         </div>
         <mat-divider></mat-divider>
+        <!--Label click model -->
         <div>
           <a mat-list-item routerLink="/login"><img src="../../../assets/image/edit.svg">Label</a>
         </div>

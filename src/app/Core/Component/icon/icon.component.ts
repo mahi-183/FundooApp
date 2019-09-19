@@ -12,10 +12,15 @@ export class IconComponent implements OnInit {
   @Input() childMessageIcon;
   @Input() hideIcon;
   toggle:boolean=false;
+  Image;
   // message;
   ///emmited the selected notes color
   @Output() selectedColor = new EventEmitter();
   constructor(private notesService:NotesService, private snackbar:MatSnackBar) { }
+
+  ngOnInit() {
+  }
+
   colorArray : any[] = [
     [
       {color:"#f06292"},
@@ -29,8 +34,6 @@ export class IconComponent implements OnInit {
       {color:"#00BCD4"}
     ]
   ]
-  ngOnInit() {
-  }
 
   mainMatMenu()
   {
@@ -39,30 +42,47 @@ export class IconComponent implements OnInit {
   mainMatMenuRestore(){
     toggle:false;
   }
+
+  ///Set color on note 
   setcolor(color: any) {
     ////check childMessage data is undefined or not
-    if(this.childMessageIcon == undefined){
+    if(this.childMessageIcon == undefined)
+    {
         console.log("inside card data",this.childMessageIcon);
         this.selectedColor.emit(color);
     }
-    else{
-    var data = {
-      "color":this.childMessageIcon.color,
-      "id":this.childMessageIcon.id
-    }
-
-    this.notesService.updateNotes(this.childMessageIcon.id, data).subscribe(data =>{
-      this.selectedColor.emit(color);
-      this.snackbar.open("Set Color Successfull","undo",
-      { duration: 5000 });
-    },
-    err=>{
-      this.snackbar.open("Set Color Successfull","undo",
-      { duration: 5000 });
-    })
+    else
+    {
+          this.childMessageIcon.color=color;
+          var data = {
+          "color":this.childMessageIcon.color,
+          "id":this.childMessageIcon.id
+          }
+          console.log("color inside icon component",color);
+          
+        this.notesService.updateNotes(this.childMessageIcon.id, data).subscribe(data =>
+        {
+              this.selectedColor.emit(color);
+              this.snackbar.open("Set Color Successfull","undo",
+              { duration: 5000 });
+        },
+        err=>{
+              this.snackbar.open("Set Color Successfull","undo",
+              { duration: 5000 });
+        })
+     }
   }
+
+  //add image on note
+  setImageOnNote(Image){
+ 
   }
 
+  onFileChanged($event,childMessageIcon){
+
+  }
+
+  ///add note to trash
   Trash(){
     this.childMessageIcon.noteType=1;
     var data = {
@@ -82,6 +102,7 @@ export class IconComponent implements OnInit {
       }
   }
 
+  ///archive notes
   Archive(){
     this.childMessageIcon.noteType=2;
     var data = {
@@ -103,6 +124,7 @@ export class IconComponent implements OnInit {
       }
   }
 
+  ///restore notes from 
   Restore(){
     this.childMessageIcon.noteType=0;
     var data = {
@@ -124,6 +146,7 @@ export class IconComponent implements OnInit {
       }
   }
   
+  ///delete the notes forever
   DeleteForever(){
     var data = {
       "id":this.childMessageIcon.id
@@ -143,6 +166,7 @@ export class IconComponent implements OnInit {
       }
   }
 
+  ///set the remider today date
   Today(childMessageIcon){
     console.log("card data",childMessageIcon);
     
@@ -156,9 +180,13 @@ export class IconComponent implements OnInit {
       console.log(err);
     })
   }
+
+  ///set the reminder tommarrow 
   Tomorrow(childMessageIcon){
 
   }
+
+  //set the reminder to next week
   nextWeek(childMessageIcon){
 
   }

@@ -12,6 +12,7 @@ export class HTTPService {
 
   baseUrl = environment.BaseUrl;
   baseUrl1 = environment.BaseUrl1;
+  //post method
   post(url, data)
   {
     console.log("data in http ",data);
@@ -26,11 +27,20 @@ export class HTTPService {
     console.log("data in http ",data);  
     return this.http.post(this.baseUrl + url, data, option);
   }
+
+  //this post request for upload image for profile
+  postProfile(url, data)
+  {
+    let option = {
+      headers: new HttpHeaders({
+        'Authorization' : 'bearer ' + localStorage.getItem('token'),
+        }) 
+    }
+    return this.http.post(this.baseUrl + url, data, option);
+  }
   //for forgetPassord api
   postate(url, data)
   {
-    console.log("data in http ",data.email);
-    
     let option = {
       headers: new HttpHeaders({
         'Authorization' : 'bearer ' + localStorage.getItem('token'),
@@ -65,7 +75,6 @@ export class HTTPService {
         'content-Type' : 'application/json'
         }) 
     }
-    // this.baseUrl1 + url
     return this.http.get(this.baseUrl1 + url, option);
   }
 }

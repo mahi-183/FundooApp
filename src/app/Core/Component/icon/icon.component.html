@@ -32,8 +32,9 @@
     </mat-menu>
   </button>
   <!-- photo icon button -->
-  <button *ngIf = "!hideIcon" mat-icon-button>
+  <button matTooltip="Add image" *ngIf = "!hideIcon" mat-icon-button>
     <mat-icon>photo</mat-icon>
+    <input style="display: none" type="file"  #selectFile (change)="onFileChanged($event,childMessageIcon)">
   </button>
 
   <!-- archive notes icon button -->
