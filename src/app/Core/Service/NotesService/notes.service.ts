@@ -41,4 +41,7 @@ export class NotesService {
     console.log("searchValue inside notesService",searchValue)
     return this.httpService.getNotes('Notes/Search?userId='+userId+'&searchString='+searchValue);
   }
+
+  //Labels api calls
+ 
 }

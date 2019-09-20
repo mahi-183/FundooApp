@@ -23,6 +23,8 @@ import { IconComponent } from './Core/Component/icon/icon.component';
 import { ArchiveComponent } from './Core/Component/archive/archive.component';
 import { SearchComponent } from './Core/Component/serach/search/search.component';
 import { ProfiledialogComponent } from './Core/Component/profiledialog/profiledialog.component';
+import { LabelDialogComponent } from './Core/Component/label-dialog/label-dialog.component';
+import { AuthGuard } from './Core/Service/Auth/auth.guard';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,7 @@ import { ProfiledialogComponent } from './Core/Component/profiledialog/profiledi
     ArchiveComponent,
     SearchComponent,
     ProfiledialogComponent,
+    LabelDialogComponent,
     
   ],
   imports: [
@@ -53,8 +56,8 @@ import { ProfiledialogComponent } from './Core/Component/profiledialog/profiledi
     FlexLayoutModule,
     HttpClientModule,
   ],
-  providers: [],  
-  entryComponents: [ProfiledialogComponent],
+  providers: [AuthGuard],  
+  entryComponents: [ProfiledialogComponent,LabelDialogComponent],
 
   bootstrap: [AppComponent]
 })

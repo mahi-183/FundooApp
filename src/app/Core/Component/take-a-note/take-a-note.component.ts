@@ -32,6 +32,7 @@ export class TakeANoteComponent implements OnInit {
       description:this.description.value,
       color:this.noteColor
     }
+    
     console.log('data..........', data);
    if(data!=null){
       console.log("iside if condition",data);

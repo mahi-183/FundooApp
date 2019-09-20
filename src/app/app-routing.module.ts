@@ -11,6 +11,7 @@ import { TrashComponent } from './Core/Component/trash/trash.component';
 import { ArchiveComponent } from './Core/Component/archive/archive.component';
 import { RemindersComponent } from './Core/Component/reminders/reminders.component';
 import { SearchComponent } from './Core/Component/serach/search/search.component';
+import { AuthGuard } from './Core/Service/Auth/auth.guard';
 
 const routes: Routes = [
   {
@@ -37,6 +38,7 @@ const routes: Routes = [
   {
     path:'dashboard',
     component:DashboardComponent,
+    canActivate:[AuthGuard],
     children:[
       {
       path:'',

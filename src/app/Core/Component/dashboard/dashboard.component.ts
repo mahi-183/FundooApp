@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { DataService } from '../../Service/DataService/data.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { ProfiledialogComponent } from '../profiledialog/profiledialog.component';
+import { LabelDialogComponent } from '../label-dialog/label-dialog.component';
+import { NotesService } from '../../Service/NotesService/notes.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,8 +20,11 @@ export class DashboardComponent implements OnInit {
   Image = "";
   LastName="";
   private _mobileQueryListener: () => void;
+  notesLabel: any;
+  UserId: string;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, public dialog: MatDialog,private router:Router, private dataService:DataService) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, public dialog: MatDialog,
+    private router:Router, private dataService:DataService, private notesService:NotesService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -34,6 +39,7 @@ export class DashboardComponent implements OnInit {
   this.LastName=localStorage.getItem('LastName');
   this.Email=localStorage.getItem('Email');
   this.Image=localStorage.getItem('Image');
+  this.UserId = localStorage.getItem('UserId');
   }
 
   //sign out the 
@@ -65,7 +71,6 @@ export class DashboardComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(ProfiledialogComponent, {
       width: '500px',
-      
       // data: {name: this.name, animal: this.animal}
     });
 
@@ -73,6 +78,21 @@ export class DashboardComponent implements OnInit {
       this.Image = result['imageUrl'];
       console.log('The dialog was closed');
       // this.animal = result;
+    });
+  }
+
+  //Edit Label dialog model
+  openLabelDialog():void{
+    console.log("inside the dashboard");
+    const dialogRef = this.dialog.open(LabelDialogComponent,{
+      
+      // data: this.notesLabel
+    });
+    dialogRef.afterClosed().subscribe(result=>{
+      console.log("user id in dashboard",this.UserId);
+      
+      console.log("dashboard",result);
+      //call here addnotesLabel method 
     });
   }
 }

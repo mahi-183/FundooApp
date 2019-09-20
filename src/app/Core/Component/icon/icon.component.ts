@@ -13,6 +13,7 @@ export class IconComponent implements OnInit {
   @Input() hideIcon;
   toggle:boolean=false;
   Image;
+  label;
   // message;
   ///emmited the selected notes color
   @Output() selectedColor = new EventEmitter();
@@ -188,6 +189,11 @@ export class IconComponent implements OnInit {
 
   //set the reminder to next week
   nextWeek(childMessageIcon){
+
+  }
+
+  //add label on note
+  AddLabel($event){
 
   }
 }

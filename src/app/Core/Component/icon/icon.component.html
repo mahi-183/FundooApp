@@ -31,6 +31,7 @@
       </div>
     </mat-menu>
   </button>
+
   <!-- photo icon button -->
   <button matTooltip="Add image" *ngIf = "!hideIcon" mat-icon-button>
     <mat-icon>photo</mat-icon>
@@ -46,10 +47,17 @@
   <button mat-button [matMenuTriggerFor]="aboveMenu1">
     <mat-icon>more_vert</mat-icon>
     <mat-menu #aboveMenu1="matMenu">
-      <button *ngIf = "!hideIcon" mat-menu-item>Add Label</button>
       <button *ngIf = "!hideIcon" mat-menu-item (click)="Trash()">Delete</button>
       <button  *ngIf = "hideIcon" mat-menu-item (click)="Restore()">Restore</button>
       <button  *ngIf = "hideIcon" mat-menu-item (click)="DeleteForever()">Delete_Forever</button>
+      <button *ngIf = "!hideIcon" mat-menu-item [matMenuTriggerFor]="aboveMenu2">Add Label</button>
+      <mat-menu #aboveMenu2 = "matMenu">
+         <div class = "label">Label Note</div>
+            <input type= "text" class="inputLabel" [(ngModel)] = "label" placeholder="Enter label name">
+            <div>
+              <button mat-button (click) = "AddLabel($event)">add Label</button>
+              </div>
+          </mat-menu>
     </mat-menu>
   </button>
-  </div>
+</div>

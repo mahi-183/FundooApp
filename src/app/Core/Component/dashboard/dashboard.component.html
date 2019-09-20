@@ -84,28 +84,32 @@
       fixedTopGap="56">
       <mat-nav-list class="SideNav" style="width:140px">
         <div>
-          <a mat-list-item routerLink="."><img src="../../../assets/image/bulb.svg">Notes</a>
+          <a mat-list-item routerLink="."><img src="../../../assets/image/bulb.svg" style="padding-right: 20px;">Notes</a>
         </div>
         <div fxLayoutGap=10px>
           <a mat-list-item routerLink="reminder">
-            <mat-icon>notifications</mat-icon>Reminder
+            <mat-icon class="material-icons" style="padding-right: 20px;">notifications</mat-icon>Reminder
           </a>
         </div>
-        <mat-divider></mat-divider>
+        <mat-divider style="padding-bottom:10px"></mat-divider>
         <!--Label click model -->
         <div>
-          <a mat-list-item routerLink="/login"><img src="../../../assets/image/edit.svg">Label</a>
-        </div>
+          <!-- <a mat-list-item><img (click)="openLabelDialog()" src="../../../assets/image/edit.svg">Label</a> -->
+
+          <a mat-button (click)="openLabelDialog()">
+              <i class="material-icons" style="padding-right: 20px;">edit</i>Edit Label </a>
+          </div>
         <mat-divider></mat-divider>
+        
         <div>
           <a mat-list-item routerLink="archive">
-            <mat-icon>archive</mat-icon>Archive
+            <mat-icon style="padding-right: 20px;">archive</mat-icon>Archive
           </a>
         </div>
 
         <div>
           <a mat-list-item routerLink="trash">
-            <mat-icon>restore_from_trash</mat-icon>Trash
+            <mat-icon style="padding-right: 20px;">restore_from_trash</mat-icon>Trash
           </a>
         </div>
       </mat-nav-list>
