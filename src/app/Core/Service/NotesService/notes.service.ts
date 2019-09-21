@@ -6,7 +6,6 @@ import { identifierModuleUrl } from '@angular/compiler';
   providedIn: 'root'
 })
 export class NotesService {
-
   constructor(private httpService:HTTPService) { }
   AddNotes(data){
     console.log("inside notes Service",data);

@@ -9,15 +9,26 @@ import { Message } from '@angular/compiler/src/i18n/i18n_ast';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
-  searchValue;
+  searchValue='';
   userId;
   searchNoteArray;
   constructor(private notesService:NotesService, private dataService:DataService) { }
 
   ngOnInit() {
-    this.dataService.currentMessage.subscribe(message => this.searchValue = message)
+    this.dataService.currentMessage.subscribe(message => {
+      this.searchValue = message
+      this.searchValue=this.searchValue.trim();
+      console.log(this.searchValue,'sear');
+
+      if(this.searchValue!=''&& this.searchValue!=null && this.searchValue !=undefined  ){
+       this.getAllSearchNotes()
+      }else{
+        this.searchNoteArray=[];
+      }
+
+    })
    console.log("search note value",this.searchValue)
-    this.getAllSearchNotes()
+
   }
 
   getAllSearchNotes(){

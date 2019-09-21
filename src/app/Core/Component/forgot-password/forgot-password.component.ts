@@ -23,6 +23,8 @@ export class ForgotPasswordComponent implements OnInit {
   
   onSubmit()
   {
+    try{
+        
     var data = {
       email:this.forgotPasswordForm.value.email
     }
@@ -36,5 +38,10 @@ export class ForgotPasswordComponent implements OnInit {
       error=>{
         console.log("err",error);
       });
+    }
+    catch(error)
+    {
+      console.log(error);
+    }
   }
 }

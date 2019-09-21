@@ -1,6 +1,6 @@
 <div fxLayout="row">
   <!-- set reminder for notes -->
-  <button *ngIf = "!hideIcon" mat-icon-button [matMenuTriggerFor]="reminder" style="outline: none">
+  <button mat-icon-button *ngIf = "!hideIcon" mat-icon-button [matMenuTriggerFor]="reminder" style="outline: none">
     <mat-icon>add_alert</mat-icon>
     <mat-menu #reminder="matMenu">
         <button  mat-menu-item (click)="Today(childMessageIcon)" style="outline: none">Later today 8:00PM </button>
@@ -11,13 +11,13 @@
   </button>
 
   <!-- Add collaborators -->
-  <button *ngIf = "!hideIcon"mat-icon-button>
+  <button mat-icon-button *ngIf = "!hideIcon"mat-icon-button>
     <mat-icon >person_add</mat-icon>
    
   </button>
 
   <!-- color array -->
-  <button *ngIf = "!hideIcon" mat-button [matMenuTriggerFor]="aboveMenu">
+  <button *ngIf = "!hideIcon" mat-icon-button [matMenuTriggerFor]="aboveMenu">
     <mat-icon >color_lens</mat-icon>
     <mat-menu #aboveMenu="matMenu" yPosition="above">
       <div fxLayout="row wrap">
@@ -25,7 +25,7 @@
           <div *ngFor="let itemcolor of color">
             <div class="mat-icon-color" [ngStyle]="{'background': itemcolor.color }"
               (click)="setcolor(itemcolor.color)"></div>
-
+          
           </div>
         </div>
       </div>
@@ -33,18 +33,18 @@
   </button>
 
   <!-- photo icon button -->
-  <button matTooltip="Add image" *ngIf = "!hideIcon" mat-icon-button>
+  <button mat-icon-button matTooltip="Add image" *ngIf = "!hideIcon" mat-icon-button>
     <mat-icon>photo</mat-icon>
     <input style="display: none" type="file"  #selectFile (change)="onFileChanged($event,childMessageIcon)">
   </button>
 
   <!-- archive notes icon button -->
-  <button *ngIf = "!hideIcon" mat-icon-button (click)="Archive()">
+  <button mat-icon-button *ngIf = "!hideIcon" mat-icon-button (click)="Archive()">
     <mat-icon >archive</mat-icon>
   </button>
 
   <!-- more_vert mat-menu -->
-  <button mat-button [matMenuTriggerFor]="aboveMenu1">
+  <button mat-icon-button [matMenuTriggerFor]="aboveMenu1">
     <mat-icon>more_vert</mat-icon>
     <mat-menu #aboveMenu1="matMenu">
       <button *ngIf = "!hideIcon" mat-menu-item (click)="Trash()">Delete</button>
@@ -55,7 +55,7 @@
          <div class = "label">Label Note</div>
             <input type= "text" class="inputLabel" [(ngModel)] = "label" placeholder="Enter label name">
             <div>
-              <button mat-button (click) = "AddLabel($event)">add Label</button>
+              <button mat-icon-button (click) = "AddLabel($event)">add Label</button>
               </div>
           </mat-menu>
     </mat-menu>

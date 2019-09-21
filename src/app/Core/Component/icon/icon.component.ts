@@ -17,6 +17,7 @@ export class IconComponent implements OnInit {
   // message;
   ///emmited the selected notes color
   @Output() selectedColor = new EventEmitter();
+  @Output() selectedNoteType = new EventEmitter();
   constructor(private notesService:NotesService, private snackbar:MatSnackBar) { }
 
   ngOnInit() {
@@ -105,81 +106,113 @@ export class IconComponent implements OnInit {
 
   ///archive notes
   Archive(){
-    this.childMessageIcon.noteType=2;
-    var data = {
-      "id":this.childMessageIcon.id,
-      "noteType":2
-    }
-    
-    this.notesService.updateNotes(this.childMessageIcon.id,this.childMessageIcon).subscribe(response=>
+    try{
+      if(this.childMessageIcon == undefined)
       {
-        
-        console.log("archive response:",response);
-        this.snackbar.open("moved note to archive","undo",
-          { duration: 5000 }
-          )
-      }),error=>{
-        this.snackbar.open("notes not moved to archive","undo",
-          { duration: 5000 }
-          )
+          console.log("inside card data",this.childMessageIcon);
+          this.selectedColor.emit();
       }
+      else
+      {
+        this.childMessageIcon.noteType=2;
+        const noteType = this.childMessageIcon.noteType;
+        var data = {
+         "id":this.childMessageIcon.id,
+          "noteType":2
+         }
+      
+      this.notesService.updateNotes(this.childMessageIcon.id,this.childMessageIcon).subscribe(response=>
+        {
+          this.selectedNoteType.emit(noteType);
+          console.log("archive response:",response);
+          this.snackbar.open("moved note to archive","undo",
+            { duration: 5000 }
+            )
+        }),error=>{
+          this.snackbar.open("notes not moved to archive","undo",
+            { duration: 5000 }
+            )
+        }
+      }
+    }
+    catch(error)
+    {
+      console.log("error");
+    }
   }
 
   ///restore notes from 
   Restore(){
-    this.childMessageIcon.noteType=0;
-    var data = {
-      "id":this.childMessageIcon.id,
-      "noteType":0
-    }
-    
-    this.notesService.updateNotes(this.childMessageIcon.id,this.childMessageIcon).subscribe(response=>
-      {
-        
-        console.log("archive response:",response);
-        this.snackbar.open("notes restored successfully","undo",
-          { duration: 5000 }
-          )
-      }),error=>{
-        this.snackbar.open("notes not moved to archive","undo",
-          { duration: 5000 }
-          )
+    try{
+      this.childMessageIcon.noteType=0;
+      var data = {
+        "id":this.childMessageIcon.id,
+        "noteType":0
       }
+      
+      this.notesService.updateNotes(this.childMessageIcon.id,this.childMessageIcon).subscribe(response=>
+        {
+          
+          console.log("archive response:",response);
+          this.snackbar.open("notes restored successfully","undo",
+            { duration: 5000 }
+            )
+        }),error=>{
+          this.snackbar.open("notes not moved to archive","undo",
+            { duration: 5000 }
+            )
+        }
+    }
+    catch(error)
+    {
+      console.log("error");
+    }
   }
   
   ///delete the notes forever
   DeleteForever(){
-    var data = {
-      "id":this.childMessageIcon.id
-    }
-    
-    this.notesService.deleteNotes(this.childMessageIcon.id).subscribe(response=>
-      {
-        
-        console.log("delete notes response:",response);
-        this.snackbar.open("notes deleted successufully","undo",
-          { duration: 5000 }
-          )
-      }),error=>{
-        this.snackbar.open("notes not deleted","undo",
-          { duration: 5000 }
-          )
+    try{
+      var data = {
+        "id":this.childMessageIcon.id
       }
+      
+      this.notesService.deleteNotes(this.childMessageIcon.id).subscribe(response=>
+        {
+          
+          console.log("delete notes response:",response);
+          this.snackbar.open("notes deleted successufully","undo",
+            { duration: 5000 }
+            )
+        }),error=>{
+          this.snackbar.open("notes not deleted","undo",
+            { duration: 5000 }
+            )
+        }
+    }
+    catch(error)
+    {
+      console.log("error");
+    }
   }
 
   ///set the remider today date
   Today(childMessageIcon){
-    console.log("card data",childMessageIcon);
+    try{
+      console.log("card data",childMessageIcon);
     
-    var date = new Date();
-    date.setHours(20,0,0)
-    childMessageIcon.reminder = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " +  date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
-    this.notesService.updateNotes(this.childMessageIcon.id,this.childMessageIcon).subscribe(data =>{
-      console.log(data);
-      // this.update.emit({});
-    },err =>{
-      console.log(err);
-    })
+      var date = new Date();
+      date.setHours(20,0,0)
+      childMessageIcon.reminder = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " +  date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+      this.notesService.updateNotes(this.childMessageIcon.id,this.childMessageIcon).subscribe(data =>{
+        console.log(data);
+        // this.update.emit({});
+      },err =>{
+        console.log(err);
+      })
+    }
+    catch(error){
+     console.log("error"); 
+    }
   }
 
   ///set the reminder tommarrow 

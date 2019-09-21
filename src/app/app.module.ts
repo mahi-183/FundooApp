@@ -25,6 +25,7 @@ import { SearchComponent } from './Core/Component/serach/search/search.component
 import { ProfiledialogComponent } from './Core/Component/profiledialog/profiledialog.component';
 import { LabelDialogComponent } from './Core/Component/label-dialog/label-dialog.component';
 import { AuthGuard } from './Core/Service/Auth/auth.guard';
+import { EditNoteComponent } from './Core/Component/edit-note/edit-note.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { AuthGuard } from './Core/Service/Auth/auth.guard';
     SearchComponent,
     ProfiledialogComponent,
     LabelDialogComponent,
+    EditNoteComponent,
     
   ],
   imports: [

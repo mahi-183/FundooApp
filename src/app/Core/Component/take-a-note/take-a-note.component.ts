@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import {  FormBuilder, FormGroup, Validators , FormControl} from '@angular/forms';
+import { Component, OnInit, Output } from '@angular/core';
+import { Validators , FormControl} from '@angular/forms';
 import { Router } from '@angular/router';
 import { NotesService } from '../../Service/NotesService/notes.service';
 import { notes } from '../../Model/notes';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-take-a-note',
@@ -13,16 +14,16 @@ export class TakeANoteComponent implements OnInit {
   toggle:boolean=false;
   note: notes  = new notes();
   noteColor;
-  noteType;
-  constructor(private notesService:NotesService) { }
+  //noteType;
+  setTypeNote: any;
+
+  @Output() AferCloseEvent = new EventEmitter<any>();
+  constructor(private notesService:NotesService, private router: Router) { }
 
   title = new FormControl('',[Validators.required])
   description = new  FormControl('',[Validators.required])
   ngOnInit() {
-    // this.addNoteForm = this.formBuilder.group({
-    //   title: ['',Validators.required],
-    //   description:['',Validators.required]
-    // });
+
     }
   AddNotes(){
     this.toggle=false;
@@ -30,12 +31,13 @@ export class TakeANoteComponent implements OnInit {
       userId: localStorage.getItem('UserId'),
       title:this.title.value,
       description:this.description.value,
-      color:this.noteColor
+      color:this.noteColor,
+      noteType: this.setTypeNote
     }
     
     console.log('data..........', data);
-   if(data!=null){
-      console.log("iside if condition",data);
+   if(this.noteColor != undefined || this.description.value != "" || this.title.value != ""){
+      console.log("Inside if condition",data);
       this.notesService.AddNotes(data).subscribe(response=>
         {
           console.log("inside notes service", response);
@@ -43,8 +45,16 @@ export class TakeANoteComponent implements OnInit {
            this.title.reset();
            this.description.reset();
            this.noteColor='';
-       //   this.router.navigate(['/dashboard/notes']);
-        })
+           this.AferCloseEvent.emit(
+           {
+              type: 'update',
+              data: []
+            }
+            );
+          //  this.router.navigate(['/dashboard']);
+        },error=>{
+          console.log("error",error);
+        });
       }
       else{
         console.log("notes not added successfuly")
@@ -61,7 +71,7 @@ export class TakeANoteComponent implements OnInit {
   }
   
   setNoteType($event) {
-    console.log($event, "color")
-    this.setNoteType = $event
+    console.log($event, "noteType")
+    this.setTypeNote = $event
   }
 }

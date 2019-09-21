@@ -28,4 +28,10 @@ export class NotesComponent implements OnInit {
       // this.router.navigate(['dashboard/display']);
     });
   }
+
+  update(object){
+    if (object.type == 'update') {
+      this.GetAllNotes();
+      }
+  }
 }
