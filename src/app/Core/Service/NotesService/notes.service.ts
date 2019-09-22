@@ -41,6 +41,24 @@ export class NotesService {
     return this.httpService.getNotes('Notes/Search?userId='+userId+'&searchString='+searchValue);
   }
 
-  //Labels api calls
- 
+  //Labels api calls 
+  AddLabels(userId,data){
+    console.log("userId",userId);
+    return this.httpService.postNotes('Label/Add',data);
+  }
+
+  getAllLabels(userId){
+    console.log("userId inside the notes service",userId);
+    return this.httpService.getNotes('Label/DisplayById?UserId='+userId);
+  }
+
+  updateLabel(id,data){
+    console.log("label id inside the notes service",id);
+    return this.httpService.postNotes('Label/Update?labelId='+id,data);
+  }
+
+  deletelabel(id){
+    console.log('inside the notesService',id);
+    return this.httpService.postNotes('Label/Delete?LabelId='+id,id);
+  }
 }

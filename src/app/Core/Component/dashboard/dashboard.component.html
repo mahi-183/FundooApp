@@ -3,7 +3,7 @@
     <button mat-icon-button (click)="snav.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
-    <img class="gb_pa gb_de gb_za" alt="" aria-hidden="true"
+    <img alt="" aria-hidden="true"
       src="https://www.gstatic.com/images/branding/product/1x/keep_48dp.png"
       srcset="https://www.gstatic.com/images/branding/product/1x/keep_48dp.png 1x, https://www.gstatic.com/images/branding/product/2x/keep_48dp.png 2x "
       style="width:40px;height:40px">
@@ -83,19 +83,31 @@
   <mat-sidenav-container class="example-sidenav-container" fxFlex='100'>
     <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
       fixedTopGap="56">
-      <mat-nav-list class="SideNav" style="width:140px">
+      <mat-nav-list class="SideNav" style="width:200px">
         <div>
           <a mat-list-item routerLink="."><img src="../../../assets/image/bulb.svg" style="padding-right: 20px;">Notes</a>
         </div>
         <div fxLayoutGap=10px>
           <a mat-list-item routerLink="reminder">
-            <mat-icon class="material-icons" style="padding-right: 20px;">notifications</mat-icon>Reminder
+            <mat-icon class="material-icons" style="padding-right: 15px;">notifications</mat-icon>Reminder
           </a>
         </div>
         <mat-divider style="padding-bottom:10px"></mat-divider>
         <!--Label click model -->
         <div>
           <!-- <a mat-list-item><img (click)="openLabelDialog()" src="../../../assets/image/edit.svg">Label</a> -->
+          <label style="padding-left:20px">Labels</label><br>
+
+          <div *ngFor="let label of notesLabel">
+            <button (AferAddEvent)="addUpdate($event)" mat-button style="outline:none">
+              <div fxLayout="row">
+                <div class="imageopac">
+                  <img src="../../../assets/image/outline-label-24px.svg" />
+                </div>
+                <div style="margin-left:10px">{{label.lebelName}}</div>
+              </div>
+            </button>
+          </div>
 
           <a mat-button (click)="openLabelDialog()">
               <i class="material-icons" style="padding-right: 20px;">edit</i>Edit Label </a>

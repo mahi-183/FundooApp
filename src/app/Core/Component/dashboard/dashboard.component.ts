@@ -40,6 +40,7 @@ export class DashboardComponent implements OnInit {
   this.Email=localStorage.getItem('Email');
   this.Image=localStorage.getItem('Image');
   this.UserId = localStorage.getItem('UserId');
+  this.getAllLabel();
   }
 
   //sign out the 
@@ -86,7 +87,7 @@ export class DashboardComponent implements OnInit {
     console.log("inside the dashboard");
     const dialogRef = this.dialog.open(LabelDialogComponent,{
       
-      // data: this.notesLabel
+      data: this.notesLabel
     });
     dialogRef.afterClosed().subscribe(result=>{
       console.log("user id in dashboard",this.UserId);
@@ -94,5 +95,19 @@ export class DashboardComponent implements OnInit {
       console.log("dashboard",result);
       //call here addnotesLabel method 
     });
+  }
+
+  getAllLabel(){
+    this.notesService.getAllLabels(this.UserId).subscribe(response=>{
+      console.log("inside dashboard labels data:",response);
+      this.notesLabel = response['result'];
+      console.log("the notesLabel array",this.notesLabel['result']);
+    })
+  }
+
+  //add label event emmiter event 
+  addUpdate($event)
+  {
+    this.getAllLabel();
   }
 }

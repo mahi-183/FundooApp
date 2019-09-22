@@ -9,12 +9,13 @@
         <button style="outline: none" mat-button (click)="delete(label)">
           <i class="material-icons" >delete </i>
           </button>
-      <input style="border: 0px;outline: none;justify-content: center" mat-input [(ngModel)]=label.label>
+      <input style="border: 0px;outline: none;justify-content: center" mat-input [(ngModel)]=label.lebelName>
       <button  style="outline: none" mat-button (click)="update(label)">
       <mat-icon >done</mat-icon>
       </button>     
     </div>
     </div>
+    <mat-divider></mat-divider>
     <div mat-dialog-actions>
       <button class = "labelbutton" mat-button (click)='close()' cdkFocusInitial>Done</button>
   </div>

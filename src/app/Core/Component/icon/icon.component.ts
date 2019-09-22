@@ -80,9 +80,9 @@ export class IconComponent implements OnInit {
  
   }
 
-  onFileChanged($event,childMessageIcon){
+  // onFileChanged($event,childMessageIcon){
 
-  }
+  // }
 
   ///add note to trash
   Trash(){
