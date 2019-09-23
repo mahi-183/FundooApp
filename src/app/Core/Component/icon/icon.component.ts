@@ -14,10 +14,13 @@ export class IconComponent implements OnInit {
   toggle:boolean=false;
   Image;
   label;
+  noteType;
   // message;
   ///emmited the selected notes color
   @Output() selectedColor = new EventEmitter();
   @Output() selectedNoteType = new EventEmitter();
+  @Output() AferCloseEvent = new EventEmitter();
+  
   constructor(private notesService:NotesService, private snackbar:MatSnackBar) { }
 
   ngOnInit() {
@@ -68,7 +71,7 @@ export class IconComponent implements OnInit {
               this.snackbar.open("Set Color Successfull","undo",
               { duration: 5000 });
         },
-        err=>{
+        err=>{ 
               this.snackbar.open("Set Color Successfull","undo",
               { duration: 5000 });
         })
@@ -109,13 +112,14 @@ export class IconComponent implements OnInit {
     try{
       if(this.childMessageIcon == undefined)
       {
+         this.noteType=2;
           console.log("inside card data",this.childMessageIcon);
-          this.selectedColor.emit();
+          this.selectedNoteType.emit(this.noteType);
       }
       else
       {
         this.childMessageIcon.noteType=2;
-        const noteType = this.childMessageIcon.noteType;
+        this.noteType = this.childMessageIcon.noteType;
         var data = {
          "id":this.childMessageIcon.id,
           "noteType":2
@@ -123,8 +127,14 @@ export class IconComponent implements OnInit {
       
       this.notesService.updateNotes(this.childMessageIcon.id,this.childMessageIcon).subscribe(response=>
         {
-          this.selectedNoteType.emit(noteType);
+          this.selectedNoteType.emit(this.noteType);
           console.log("archive response:",response);
+          this.AferCloseEvent.emit(
+            {
+               type: 'update',
+               data: []
+             }
+             );
           this.snackbar.open("moved note to archive","undo",
             { duration: 5000 }
             )
@@ -155,11 +165,11 @@ export class IconComponent implements OnInit {
           
           console.log("archive response:",response);
           this.snackbar.open("notes restored successfully","undo",
-            { duration: 5000 }
+            { duration: 3000 }
             )
         }),error=>{
           this.snackbar.open("notes not moved to archive","undo",
-            { duration: 5000 }
+            { duration: 3000 }
             )
         }
     }
@@ -227,6 +237,10 @@ export class IconComponent implements OnInit {
 
   //add label on note
   AddLabel($event){
+
+  }
+
+  onFileChanged($event){
 
   }
 }

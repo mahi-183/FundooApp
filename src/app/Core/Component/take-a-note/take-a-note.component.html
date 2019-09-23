@@ -8,14 +8,14 @@
              <mat-card  [style.background-color]=noteColor class="fundoo-card" *ngIf="toggle==true">
                <div fxLayout="column" fxLayoutAlign="start">
                <div><input  class="noteinput" [style.background-color]=noteColor [formControl] ="title" placeholder="Title...."></div>
-               <div><textarea [style.background-color]=noteColor [formControl]="description" placeholder="Take a note" [ngStyle.md]="{'width.px': 100 }"
-                style="width: 400px; outline: none; overflow: hidden; border:none" [mat-autosize] autofocus></textarea></div>
+               <div><textarea class = "word-break" [style.background-color]=noteColor [formControl]="description" placeholder="Take a note" [ngStyle.md]="{'width.px': 100 }"
+                style="width: 400px; outline: none; overflow: hidden; border:none;" [mat-autosize] autofocus></textarea></div>
                
               </div>
               <div></div>
               <div fxFlexLayout="row" [style.background-color]=noteColor >
                 <div fxFlex="90" style ="padding-top: 11px;">
-                  <app-icon (selectedColor)="setcolor($event)"></app-icon>
+                  <app-icon (selectedColor)="setcolor($event)" (selectedNoteType) = "setNoteType($event)" ></app-icon>
                 </div>
                   <div fxFlex="10" >
                       <button mat-button (click)="AddNotes()">close</button>

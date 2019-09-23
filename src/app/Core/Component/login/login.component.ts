@@ -29,8 +29,8 @@ export class LoginComponent implements OnInit {
   }  
 
   onSubmit() {
-
-    console.log(" resgister ", this.loginForm.value);
+    try{
+      console.log(" resgister ", this.loginForm.value);
     this.userService.login(this.loginForm.value).subscribe(
       response => {
       console.log("The response of login",response);
@@ -57,6 +57,9 @@ export class LoginComponent implements OnInit {
         )
         console.log("err", err);
       })
+    }catch(error){
+      console.log("error",error);
+    }
     }
 
 

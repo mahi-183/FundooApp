@@ -22,7 +22,7 @@ export class DashboardComponent implements OnInit {
   private _mobileQueryListener: () => void;
   notesLabel: any;
   UserId: string;
-
+  islist : boolean =true;
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, public dialog: MatDialog,
     private router:Router, private dataService:DataService, private notesService:NotesService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
@@ -34,6 +34,9 @@ export class DashboardComponent implements OnInit {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
+  toggle(){
+    this.islist = false;
+  }
   ngOnInit() {
   this.FirstName=localStorage.getItem('FirstName');
   this.LastName=localStorage.getItem('LastName');
