@@ -37,7 +37,7 @@ export class LabelDialogComponent implements OnInit {
     console.log("inside label dialog update label value:",label);
     var data = {
       'UserId': this.userId,
-      'LebelName':label.lebelName
+      'LebelName':label.labelName
     }
     this.notesService.updateLabel(label.id,data).subscribe(response=>{
       console.log("response after label updated:",response);
@@ -46,7 +46,7 @@ export class LabelDialogComponent implements OnInit {
 
   close(){
     var data ={
-      "lebelName":this.label.value,
+      "labelName":this.label.value,
       "userId":this.userId
     }
     console.log("inside the close button in label dialog ts",data);

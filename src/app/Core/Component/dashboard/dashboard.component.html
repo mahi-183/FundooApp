@@ -83,7 +83,7 @@
   <mat-sidenav-container class="example-sidenav-container" fxFlex='100'>
     <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
       fixedTopGap="56">
-      <mat-nav-list class="SideNav" style="width:200px">
+      <mat-nav-list class="SideNav" style="width:210px">
         <div>
           <a mat-list-item routerLink="."><img src="../../../assets/image/bulb.svg" style="padding-right: 20px;">Notes</a>
         </div>
@@ -96,7 +96,7 @@
         <!--Label click model -->
         <div>
           <!-- <a mat-list-item><img (click)="openLabelDialog()" src="../../../assets/image/edit.svg">Label</a> -->
-          <label style="padding-left:20px">Labels</label><br>
+          <label style="padding-left:20px">Labels</label><br><br>
 
           <div *ngFor="let label of notesLabel">
             <button (AferAddEvent)="addUpdate($event)" mat-button style="outline:none">
@@ -104,11 +104,11 @@
                 <div class="imageopac">
                   <img src="../../../assets/image/outline-label-24px.svg" />
                 </div>
-                <div style="margin-left:10px">{{label.lebelName}}</div>
+                <div style="margin-left:10px">{{label.labelName}}</div>
               </div>
             </button> 
           </div>
-
+          <mat-divider style="padding-top:10px;outline: none;border: none"></mat-divider>
           <a mat-button (click)="openLabelDialog()">
               <i class="material-icons" style="padding-right: 20px;">edit</i>Edit Label </a>
           </div>

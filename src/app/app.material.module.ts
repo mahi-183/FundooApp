@@ -9,6 +9,7 @@ import {MatListModule} from '@angular/material/list';
 import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
     
@@ -27,7 +28,8 @@ import { ImageCropperModule } from 'ngx-image-cropper';
         ReactiveFormsModule,
         FormsModule,
         MatDialogModule,
-        ImageCropperModule
+        ImageCropperModule,
+        MatChipsModule
     ],
     exports: [
         MatFormFieldModule,
@@ -44,7 +46,8 @@ import { ImageCropperModule } from 'ngx-image-cropper';
         ReactiveFormsModule,
         FormsModule,
         MatDialogModule,
-        ImageCropperModule
+        ImageCropperModule,
+        MatChipsModule
     ],
     providers: [],
   })

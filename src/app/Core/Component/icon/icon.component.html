@@ -3,6 +3,7 @@
   <button mat-icon-button *ngIf = "!hideIcon" mat-icon-button [matMenuTriggerFor]="reminder" style="outline: none">
     <mat-icon>add_alert</mat-icon>
     <mat-menu #reminder="matMenu">
+        <label style="padding-left:20px">Reminder:</label><br><br>
         <button  mat-menu-item (click)="Today(childMessageIcon)" style="outline: none">Later today 8:00PM </button>
         <button mat-menu-item (click)="Tomorrow(childMessageIcon)" style="outline: none">Tomorrow 8:00AM</button>
         <button mat-menu-item (click)="nextWeek(childMessageIcon)" style="outline: none">Next Week 8:00AM</button>
