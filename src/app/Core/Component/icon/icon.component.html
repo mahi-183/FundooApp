@@ -1,7 +1,7 @@
 <div fxLayout="row">
   <!-- set reminder for notes -->
   <button mat-icon-button *ngIf = "!hideIcon" mat-icon-button [matMenuTriggerFor]="reminder" style="outline: none">
-    <mat-icon>add_alert</mat-icon>
+    <mat-icon matTooltip="reminder">add_alert</mat-icon>
     <mat-menu #reminder="matMenu">
         <label style="padding-left:20px">Reminder:</label><br><br>
         <button  mat-menu-item (click)="Today(childMessageIcon)" style="outline: none">Later today 8:00PM </button>
@@ -12,11 +12,11 @@
   </button>
 
   <!-- Add collaborators -->
-  <button mat-icon-button *ngIf = "!hideIcon"mat-icon-button>
-    <mat-icon >person_add</mat-icon>
+  <button mat-icon-button *ngIf = "!hideIcon" (click) = "openDialog()">
+    <mat-icon>person_add</mat-icon>
    
   </button>
-
+ 
   <!-- color array -->
   <button *ngIf = "!hideIcon" mat-icon-button [matMenuTriggerFor]="aboveMenu">
     <mat-icon >color_lens</mat-icon>
@@ -40,9 +40,13 @@
   </button>
 
   <!-- archive notes icon button -->
-  <button mat-icon-button *ngIf = "!hideIcon" mat-icon-button (click)="Archive()">
+  <button mat-icon-button *ngIf = '!hideIcon && archive == true' mat-icon-button (click)="Archive()">
     <mat-icon >archive</mat-icon>
   </button>
+  <!-- unachive notes -->
+<button mat-icon-button *ngIf='!hideIcon && archive == false' matTooltip="Unarchive" (click)="unArchive()" style="outline: none">
+<mat-icon class="mat-18">unarchive</mat-icon>
+</button>
 
   <!-- more_vert mat-menu -->
   <button mat-icon-button [matMenuTriggerFor]="aboveMenu1">

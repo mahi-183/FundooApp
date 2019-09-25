@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NotesService } from '../../Service/NotesService/notes.service';
 import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialog } from '@angular/material';
+import { CollaborationComponent } from '../collaboration/collaboration.component';
 
 @Component({
   selector: 'app-icon',
@@ -15,13 +16,17 @@ export class IconComponent implements OnInit {
   Image;
   label;
   noteType;
+  reminder:"reminder";
+  archive:boolean = true;
+
   // message;
   ///emmited the selected notes color
   @Output() selectedColor = new EventEmitter();
   @Output() selectedNoteType = new EventEmitter();
   @Output() AferCloseEvent = new EventEmitter();
+ 
   
-  constructor(private notesService:NotesService, private snackbar:MatSnackBar) { }
+  constructor(private notesService:NotesService, private snackbar:MatSnackBar,public dialog: MatDialog) { }
 
   ngOnInit() {
   }
@@ -112,12 +117,14 @@ export class IconComponent implements OnInit {
     try{
       if(this.childMessageIcon == undefined)
       {
+          this.archive = false;
          this.noteType=2;
           console.log("inside card data",this.childMessageIcon);
           this.selectedNoteType.emit(this.noteType);
       }
       else
       {
+        this.archive = false;
         this.childMessageIcon.noteType=2;
         this.noteType = this.childMessageIcon.noteType;
         var data = {
@@ -141,6 +148,51 @@ export class IconComponent implements OnInit {
         }),error=>{
           this.snackbar.open("notes not moved to archive","undo",
             { duration: 5000 }
+            )
+        }
+      }
+    }
+    catch(error)
+    {
+      console.log("error");
+    }
+  }
+
+  unArchive(){
+    try{
+      if(this.childMessageIcon == undefined)
+      {
+          this.archive = true;
+         this.noteType=0;
+          console.log("inside card data",this.childMessageIcon);
+          this.selectedNoteType.emit(this.noteType);
+      }
+      else
+      {
+        this.archive = true;
+        this.childMessageIcon.noteType=0;
+        this.noteType = this.childMessageIcon.noteType;
+        var data = {
+         "id":this.childMessageIcon.id,
+          "noteType":0
+         }
+      
+      this.notesService.updateNotes(this.childMessageIcon.id,this.childMessageIcon).subscribe(response=>
+        {
+          this.selectedNoteType.emit(this.noteType);
+          console.log("unArchive response:",response);
+          this.AferCloseEvent.emit(
+            {
+               type: 'update',
+               data: []
+             }
+             );
+          this.snackbar.open("moved note to UnArchive","undo",
+            { duration: 3000 }
+            )
+        }),error=>{
+          this.snackbar.open("notes not moved to UnArchive","undo",
+            { duration: 3000 }
             )
         }
       }
@@ -226,13 +278,32 @@ export class IconComponent implements OnInit {
   }
 
   ///set the reminder tommarrow 
-  Tomorrow(childMessageIcon){
-
+  Tomorrow(childMessageIcon)
+  {
+    var date = new Date();
+    date.setHours(8,0,0)
+    childMessageIcon.reminder = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate()+1) + " " +  date.getHours() + ":" + date.getMinutes();
+    this.notesService.updateNotes(this.childMessageIcon.id,this.childMessageIcon).subscribe(data =>{
+      console.log(data);
+      // this.update.emit({});
+    },err =>{
+      console.log(err);
+    })
   }
 
+  
   //set the reminder to next week
-  nextWeek(childMessageIcon){
-
+  nextWeek(childMessageIcon)
+  {
+    var date = new Date();
+    date.setHours(8,0,0)
+    childMessageIcon.reminder = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate()+7) + " " +  date.getHours() + ":" + date.getMinutes();
+    this.notesService.updateNotes(this.childMessageIcon.id,this.childMessageIcon).subscribe(data =>{
+      console.log(data);
+      // this.update.emit({});
+    },err =>{
+      console.log(err);
+    })
   }
 
   //add label on note
@@ -243,5 +314,18 @@ export class IconComponent implements OnInit {
 
   onFileChanged($event){
 
+  }
+
+  openDialog(): void {
+    // localStorage.setItem('noteId',childMessageIcon.id);
+    // const dialogConfig = new MatDialogConfig();
+    console.log("inside the icon component",this.childMessageIcon)
+    const dialogRef = this.dialog.open(CollaborationComponent, {
+      data: this.childMessageIcon
+    });
+   
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    }); 
   }
 }

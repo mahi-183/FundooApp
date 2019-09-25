@@ -31,8 +31,8 @@
           <div >
               <button mat-icon-button style="outline: none" fxHide.xs=true>
                   <mat-icon>
-                    <img style="margin-bottom: 10px" (click) = "toggle()" src="../../assets/image/Grid.svg" *ngIf="islist"/>
-                    <img style="margin-bottom: 10px"  *ngIf="!islist" (click) = "toggle()" src="../../assets/image/list.svg"/>
+                    <img style="margin-bottom: 10px" src="../../assets/image/Grid.svg" *ngIf="islist" (click) = "changeView()"/>
+                    <img style="margin-bottom: 10px"  src="../../assets/image/list.svg" *ngIf="!islist " (click) = "changeView()" />
                   </mat-icon>
                 </button>
           </div>

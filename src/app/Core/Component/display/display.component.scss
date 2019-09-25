@@ -1,3 +1,163 @@
 .displayNote{
-    width:222px;margin-right: 10px;margin-bottom: 10px
+    margin-right: 10px;margin-bottom: 10px
     }
+    
+
+    .grid{
+        margin-left: 12%;
+        flex-flow: row wrap;
+        box-sizing: border-box;
+        display: flex;
+    
+      }
+      .grid .loop{
+          width: fit-content;
+      }
+      .grid .note{
+        width: 280px;
+        height:auto;
+        margin-top: 50px;
+      }
+      .list .note{
+        min-width: 602px;
+        border-radius: 10px;
+        margin-top: 2%;
+        margin-bottom: 2%;
+        max-width: 600px;
+      }
+      .list{
+        flex-direction: column;
+        box-sizing: border-box;
+        display: flex;
+        place-content: center flex-start;
+        align-items: center;
+        margin-top: 8px;
+      }
+      
+    element.style {
+      max-width: 600px;
+      pointer-events: auto;
+      width: 50px;
+      height: auto;
+      position: static;
+    }
+    
+    
+    .buttonOutline{
+      outline: none;
+    }
+    .image{
+      width: 100%;
+      background-size: cover;
+    }
+    
+    @media only screen and (max-width: 600px) {
+      .grid{
+        flex-direction: column;
+        box-sizing: border-box;
+        display: flex;
+        place-content: center flex-start;
+        align-items: center;
+        margin-top: 8px;
+        margin-left: 0%;
+    
+    
+      }
+      .grid .loop{
+          width: fit-content;
+      }
+      .grid .note{
+        border-radius: 10px;
+        margin-top: 2%;
+        margin-bottom: 2%;
+        width: 500px;
+        /* min-width: 500px; */
+        margin-left: 1%;
+        
+      }
+    }
+    @media only screen and (max-width: 510px) {
+      .grid{
+        flex-direction: column;
+        box-sizing: border-box;
+        display: flex;
+        place-content: center flex-start;
+        align-items: center;
+        margin-top: 8px;
+        margin-left: 1%;
+    
+    
+      }
+      .grid .loop{
+          width: fit-content;
+      }
+      .grid .note{
+        border-radius: 10px;
+        margin-top: 2%;
+        margin-bottom: 2%;
+        width: 300px;
+       
+        margin-left: 1%;   
+      }
+    }
+    @media only screen and (max-width: 425px) {
+        .list .note{  
+          min-width: 402px;
+          border-radius: 10px;
+          margin-top: 2%;
+          margin-bottom: 2%;
+          max-width: 400px;
+        }
+        .list{
+          flex-direction: column;
+          box-sizing: border-box;
+          display: flex;
+          place-content: center flex-start;
+          align-items: center;
+          margin-top: 8px;
+        }
+      }
+      
+@media only screen and (max-width: 300px) {
+    .list .note{  
+      min-width: 272px;
+      border-radius: 10px;
+      margin-top: 2%;
+      margin-bottom: 2%;
+      max-width: 270px;
+    }
+    .list{
+      flex-direction: column;
+      box-sizing: border-box;
+      display: flex;
+      place-content: center flex-start;
+      align-items: center;
+      margin-top: 8px;
+    }
+  }
+  
+  
+@media only screen and (max-width: 600px) {
+    .list .note{  
+      min-width: 502px;
+      border-radius: 10px;
+      margin-top: 2%;
+      margin-bottom: 2%;
+     max-width: 500px;
+    }
+    .list{
+      flex-direction: column;
+      box-sizing: border-box;
+      display: flex;
+      place-content: center flex-start;
+      align-items: center;
+      margin-top: 8px;
+    }
+  }
+  
+  .matcardView{
+    width: 220px;
+}
+.matcardListView{
+    width:500px;
+}

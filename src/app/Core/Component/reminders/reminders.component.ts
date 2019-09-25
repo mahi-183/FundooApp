@@ -23,5 +23,4 @@ export class RemindersComponent implements OnInit {
       console.log("reminder array", this.reminderArray);
     })
   }
-
 }

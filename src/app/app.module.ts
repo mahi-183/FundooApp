@@ -26,6 +26,7 @@ import { ProfiledialogComponent } from './Core/Component/profiledialog/profiledi
 import { LabelDialogComponent } from './Core/Component/label-dialog/label-dialog.component';
 import { AuthGuard } from './Core/Service/Auth/auth.guard';
 import { EditNoteComponent } from './Core/Component/edit-note/edit-note.component';
+import { CollaborationComponent } from './Core/Component/collaboration/collaboration.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { EditNoteComponent } from './Core/Component/edit-note/edit-note.componen
     ProfiledialogComponent,
     LabelDialogComponent,
     EditNoteComponent,
+    CollaborationComponent,
     
   ],
   imports: [
@@ -59,7 +61,7 @@ import { EditNoteComponent } from './Core/Component/edit-note/edit-note.componen
     HttpClientModule,
   ],
   providers: [AuthGuard],  
-  entryComponents: [ProfiledialogComponent,LabelDialogComponent],
+  entryComponents: [ProfiledialogComponent,LabelDialogComponent,CollaborationComponent],
 
   bootstrap: [AppComponent]
 })

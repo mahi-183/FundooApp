@@ -23,6 +23,7 @@ export class DashboardComponent implements OnInit {
   notesLabel: any;
   UserId: string;
   islist : boolean =true;
+  message: boolean;
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, public dialog: MatDialog,
     private router:Router, private dataService:DataService, private notesService:NotesService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
@@ -34,9 +35,6 @@ export class DashboardComponent implements OnInit {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
-  toggle(){
-    this.islist = false;
-  }
   ngOnInit() {
   this.FirstName=localStorage.getItem('FirstName');
   this.LastName=localStorage.getItem('LastName');
@@ -44,6 +42,8 @@ export class DashboardComponent implements OnInit {
   this.Image=localStorage.getItem('Image');
   this.UserId = localStorage.getItem('UserId');
   this.getAllLabel();
+  this.dataService.messageOfGrid.subscribe(message => this.message = message);
+  this.islist = true;
   }
 
   //sign out the 
@@ -52,6 +52,13 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['login']);
   }
 
+  ///chnage view of notes like grid view and list view
+  changeView()
+  {
+    this.islist=!this.islist;
+    console.log(this.islist);
+    this.dataService.changeMessageGrid(this.islist);
+  }
   //add new user 
   AddAccount()
   {

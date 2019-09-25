@@ -1,13 +1,16 @@
-<div fxLayout="row wrap" style="margin-top: 40px" fxFlexOffset="15" fxLayoutAlign="start center center">
-  <div *ngFor="let item of childMessage">
-    <mat-card class = "displayNote" [ngStyle]="{'background-color':item.color}">
+<div fxLayout="{{direction}}" style="margin-top: 40px" fxFlexOffset="15" fxLayoutAlign="start center center">
+  <div class="element.style"  *ngFor="let item of childMessage">
+    <mat-card class = "displayNote" [ngStyle]="{'background-color':item.color}" [class.matcardView]="!isGrid" [class.matcardListView]="isGrid">
       <div fxLayout=" column">
         <div>
           <p>{{item.title}}</p>
           <p>{{item.description}}</p>
           
           <mat-chip-list *ngIf="item.reminder!=null">
-          <mat-chip>{{item.reminder}}</mat-chip>
+          <mat-chip>
+            {{item.reminder | date:'medium'}}
+            <mat-icon matChipRemove (click)="removeReminder(item)">cancel</mat-icon>
+          </mat-chip>
         </mat-chip-list>
         </div>
       </div>
