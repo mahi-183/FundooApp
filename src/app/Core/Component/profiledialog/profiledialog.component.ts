@@ -13,7 +13,7 @@ export class ProfiledialogComponent implements OnInit {
   croppedImage: any = '';
   selectedImage: Blob;
   userId: any;
-  imageUrl: any;
+  // imageUrl: any;
 
   constructor(
     public dialogRef: MatDialogRef<ProfiledialogComponent>,
@@ -25,9 +25,11 @@ export class ProfiledialogComponent implements OnInit {
 
   ngOnInit() {
   }
+  
   fileChangeEvent(event: any): void {
     this.imageChangedEvent = event;
   }
+  
   imageCropped(event: ImageCroppedEvent) {
     this.croppedImage = event.base64;
     this.selectedImage = event.file

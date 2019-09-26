@@ -12,7 +12,12 @@ export class HTTPService {
 
   baseUrl = environment.BaseUrl;
   baseUrl1 = environment.BaseUrl1;
-  //post method
+ 
+  /**
+   * add new user
+   * @param url backurl
+   * @param data data for registrered user
+   */
   post(url, data)
   {
     console.log("data in http ",data);
@@ -23,12 +28,31 @@ export class HTTPService {
         'content-Type' : 'application/json'
         }) 
     }
-    console.log("data in http ",option);
-    console.log("data in http ",data);  
+    console.log("data in option ",option);
+    console.log("data in http data",data);  
     return this.http.post(this.baseUrl + url, data, option);
   }
 
-  //this post request for upload image for profile
+  /**
+   * get user details
+   * @param url backend url
+   */
+  get(url){
+    console.log("inside http service url",url);
+    let option = {
+      headers: new HttpHeaders({
+        'Authorization' : 'bearer ' + localStorage.getItem('token'),
+        'content-Type' : 'application/json'
+        }) 
+    }
+    return this.http.get(this.baseUrl+url,option);
+  }
+
+  /**
+   * upload profile image
+   * @param url back end url of upload profile image 
+   * @param data 
+   */
   postProfile(url, data)
   {
     let option = {
@@ -38,19 +62,13 @@ export class HTTPService {
     }
     return this.http.post(this.baseUrl + url, data, option);
   }
-  //for forgetPassord api
-  postate(url, data)
-  {
-    let option = {
-      headers: new HttpHeaders({
-        'Authorization' : 'bearer ' + localStorage.getItem('token'),
-        'content-Type' : 'application/json'
-        }) 
-    }
-    return this.http.post(this.baseUrl + url + data.email, option);
-  }
 
-  ////for notes microservice call
+  /*****************************Back end Http methods for notes*********************************************/
+  /**
+   * add notes
+   * @param url backend url 
+   * @param data data to add note
+   */
   postNotes(url, data)
   {
     console.log("data in http ",data);
@@ -66,6 +84,10 @@ export class HTTPService {
     return this.http.post(this.baseUrl1 + url, data, option);
   }
 
+  /**
+   * get notes by user id
+   * @param url backend url of get notes by user id
+   */
   getNotes(url){
     console.log("inside httpservice",this.baseUrl1 + url);
     
@@ -77,4 +99,6 @@ export class HTTPService {
     }
     return this.http.get(this.baseUrl1 + url, option);
   }
+
+
 }

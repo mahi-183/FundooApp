@@ -5,7 +5,7 @@
     <mat-divider style="margin-top:-10px"></mat-divider>
     <div mat-dialog-content fxLayout="column" style="overflow: hidden;">
       <span fxLayout="row">
-        <button mat-icon-button class="icon">
+        <button mat-icon-button class="Collicon" >
           <mat-icon>person_outline</mat-icon>
         </button>
         <div fxLayout="column">
@@ -25,14 +25,15 @@
         </button>
       </div>
       <div fxLayout = "row" fxFlex = 100>
-        <input  placeholder="email to share"  [formControl]="ReceiverEmail">
-        <button  style="outline: none" mat-button (click)="add(ReceiverEmail)">
+        <!-- <input  placeholder="email to share"  [formControl]="createdBy"> -->
+        <input (keyup)="search($event)" type="search"  class = "input-search" matInput placeholder="search">
+        <button  style="outline: none" mat-button (click)="addCollaborator()">
             <mat-icon >done</mat-icon></button>      
       </div>
     </div>
   
     <div mat-dialog-actions class="actionDialog">
       <button mat-raised-button class="actionButton" [mat-dialog-close]>Cancel</button>
-      <button mat-raised-button class="actionButton" (click)="add()" [mat-dialog-close]>Save</button>
+      <button mat-raised-button class="actionButton" (click)="addCollaborator()" [mat-dialog-close]>Save</button>
     </div>
   </div>

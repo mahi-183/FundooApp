@@ -20,7 +20,7 @@ export class UserService {
 
   forgotPassword(data){
     console.log("inside user service",data)
-    return this.httpService.postate('AccountUser/ForgetPassword?email=',data)
+    return this.httpService.post('AccountUser/ForgetPassword?email='+data.email,data)
   }
   resetPassword(data){
     console.log("inside user service",data)
@@ -31,5 +31,10 @@ export class UserService {
     console.log("inside user service userId",userId);
     console.log("inside user service uploadData",uploadData);
     return this.httpService.postProfile('AccountUser/ImageUpload?userId='+userId,uploadData);
+  }
+
+  SearchUser(SearchValue){
+    console.log("userService searchValue",SearchValue);
+    return this.httpService.get('AccountUser/searchUser?searchString='+SearchValue);
   }
 }

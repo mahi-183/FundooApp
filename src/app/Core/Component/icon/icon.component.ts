@@ -307,8 +307,8 @@ export class IconComponent implements OnInit {
   }
 
   //add label on note
-  AddLabel($event){
-
+  AddLabelToNote($event){
+    
     
   }
 
