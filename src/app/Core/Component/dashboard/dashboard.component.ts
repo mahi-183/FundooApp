@@ -59,6 +59,7 @@ export class DashboardComponent implements OnInit {
     console.log(this.islist);
     this.dataService.changeMessageGrid(this.islist);
   }
+  
   //add new user 
   AddAccount()
   {
