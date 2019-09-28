@@ -18,20 +18,41 @@
         </div>
       </span>
     </div>
+    <div mat-dialog-content fxLayout="column" style="overflow: hidden;">
+        <span fxLayout="row">
+          <button mat-icon-button class="Collicon" >
+            <mat-icon>person_outline</mat-icon>
+          </button>
+          <div fxLayout="column">
+            <div class="usernameStyle" >
+              {{FirstName}} {{LastName}}<span style="font-style: italic">(Owner)</span>
+            </div>
+            <div class="emailStyle">
+              {{Email}}
+            </div>
+          </div>
+        </span>
+      </div>
+
   <div fxLayout="row" style="position: relative;">
       <div class="user">
-        <button mat-icon-button class="icon">
+        <button mat-icon-button class="Collicon">
           <mat-icon>person_outline</mat-icon>
         </button>
       </div>
-      <div fxLayout = "row" fxFlex = 100>
-        <!-- <input  placeholder="email to share"  [formControl]="createdBy"> -->
-        <input (keyup)="search($event)" type="search"  class = "input-search" matInput placeholder="search">
-        <button  style="outline: none" mat-button (click)="addCollaborator()">
-            <mat-icon >done</mat-icon></button>      
+      <div fxFlex = 100 >
+        <input (keyup)="search($event)" type="search"  class = "input-search" matInpu t placeholder="search">
+        <div fxLayout = "row" (click)="addCollaborator(data)">
+            <mat-icon >done</mat-icon>
+        </div>      
+          <div *ngFor = "let data of filteredArray">
+            <p (click)="addCollaborator(data)">
+            {{data.email}}
+            </p>
+            </div>
       </div>
     </div>
-  
+    
     <div mat-dialog-actions class="actionDialog">
       <button mat-raised-button class="actionButton" [mat-dialog-close]>Cancel</button>
       <button mat-raised-button class="actionButton" (click)="addCollaborator()" [mat-dialog-close]>Save</button>

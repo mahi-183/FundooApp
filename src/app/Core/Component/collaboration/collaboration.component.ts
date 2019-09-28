@@ -16,6 +16,9 @@ export class CollaborationComponent implements OnInit {
   userId: string;
   searchValue;
   userArray;
+  filteredArray: any;
+  users: any;
+  showColloavrator;
   constructor(public dialogRef: MatDialogRef<CollaborationComponent>, private notes: NotesService,
     @Inject(MAT_DIALOG_DATA) public data: any, private notesService: NotesService, private userService:UserService) { }
 
@@ -24,9 +27,21 @@ export class CollaborationComponent implements OnInit {
     this.LastName = localStorage.getItem("LastName");
     this.Email = localStorage.getItem("Email");
     this.userId = localStorage.getItem('UserId');
+    this.getAllUser();
   }
   
   createdBy = new FormControl('',Validators.email);
+
+  /**
+   * get all user list
+   */
+  getAllUser(){
+    this.userService.getAllUser().subscribe(response=>{
+      console.log("user list",response);
+      this.userArray = response;
+      console.log("response of userArray",this.userArray);
+    })
+  }
   
   /**
    * search user
@@ -38,33 +53,39 @@ export class CollaborationComponent implements OnInit {
     this.searchValue = this.searchValue.trim();
     if(this.searchValue!=undefined && this.searchValue!=null && this.searchValue!='')
     {
-      this.userService.SearchUser(this.searchValue).subscribe(response=>{
-        this.userArray = response['result'];
-        console.log("response in collaborator search",this.userArray);
-      })
+      this.filteredArray = this.filterUser(this.userArray,this.searchValue);
+      console.log("filtered array", this.filteredArray);
     }
     else
     {
-      this.userArray=[];
+      this.filteredArray=[];
     }
   }
 
+  filterUser=(userArray, searchValue)=>{
+   this.users = userArray.filter(item=>{
+     return item.email.toLowerCase().startsWith(searchValue.toLowerCase());
+   })
+   return this.users;
+  }
   /**
    * add collaborator
    * @param createdBy collabarator email id
    */
-  addCollaborator(createdBy){
+  addCollaborator(datacollaborator){
     console.log("note Id inside the collaborator",this.data.id)
+    
     var data1 = {
       'userId':this.userId,
       'noteId' : this.data.id,
-      'createdBy':this.createdBy.value
+      'createdBy':datacollaborator.email
     }
     console.log("collaborator data", data1)
-    // this.notesService.addCollaborator(data1).subscribe(response=>{
-    //   console.log("response",response);
-    // });
-
+    this.notesService.addCollaborator(data1).subscribe(response=>{
+      console.log("response",response);
+      const checkResponse = response['result'];
+      
+    });
   }
 
 }

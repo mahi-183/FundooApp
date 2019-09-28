@@ -37,4 +37,8 @@ export class UserService {
     console.log("userService searchValue",SearchValue);
     return this.httpService.get('AccountUser/searchUser?searchString='+SearchValue);
   }
+
+  getAllUser(){
+    return this.httpService.get('AccountUser/getUserlist');
+  }
 }
