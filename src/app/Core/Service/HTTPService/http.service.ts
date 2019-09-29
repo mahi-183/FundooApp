@@ -10,7 +10,13 @@ export class HTTPService {
 
   constructor(private http:HttpClient) { }
 
+  /**
+   * this url is user Microservice url
+   */
   baseUrl = environment.BaseUrl;
+  /**
+   * this url is notes microservice url
+   */
   baseUrl1 = environment.BaseUrl1;
  
   /**
@@ -98,6 +104,35 @@ export class HTTPService {
         }) 
     }
     return this.http.get(this.baseUrl1 + url, option);
+  }
+
+  /**
+   * upload the image on notes
+   * @param url backurl
+   * @param data data for image 
+   */
+  // postImage(url, data)
+  // {
+  //   console.log("data in http ",data);
+    
+  //   let option = {
+  //     headers: new HttpHeaders({
+  //       'Authorization' : 'bearer ' + localStorage.getItem('token'),
+  //       }) 
+  //   }
+  //   console.log("data in option url ",url);
+  //   console.log("data in http data baseUrl1",this.baseUrl1); 
+  //   console.log("url",this.baseUrl1+url);
+  //   return this.http.post(this.baseUrl1 + url, data, option);
+  // }
+  postImage(url, data)
+  {
+    let option = {
+      headers: new HttpHeaders({
+        'Authorization' : 'bearer ' + localStorage.getItem('token'),
+        }) 
+    }
+    return this.http.post(this.baseUrl1 + url, data, option);
   }
 
 

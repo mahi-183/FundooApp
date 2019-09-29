@@ -3,6 +3,9 @@
     <mat-card class = "displayNote" [ngStyle]="{'background-color':item.color}" [class.matcardView]="!isGrid" [class.matcardListView]="isGrid">
       <div fxLayout=" column">
         <div>
+            <div class="image"> 
+                <img style="width: 100%" src="{{item.image}}"/>
+            </div>
           <p>{{item.title}}</p>
           <p>{{item.description}}</p>
           

@@ -84,7 +84,6 @@ export class CollaborationComponent implements OnInit {
     this.notesService.addCollaborator(data1).subscribe(response=>{
       console.log("response",response);
       const checkResponse = response['result'];
-      
     });
   }
 

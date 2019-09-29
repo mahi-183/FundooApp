@@ -18,7 +18,7 @@ export class IconComponent implements OnInit {
   noteType;
   reminder:"reminder";
   archive:boolean = true;
-
+  selectedFile:File;
   // message;
   ///emmited the selected notes color
   @Output() selectedColor = new EventEmitter();
@@ -312,8 +312,16 @@ export class IconComponent implements OnInit {
     
   }
 
-  onFileChanged($event){
+  onFileChanged(event){
+    this.selectedFile = event.target.files[0];
+    let uploadData=new FormData();
+    uploadData.append('file',this.selectedFile,'file');
+    console.log("upload",uploadData);
 
+    console.log("id",this.childMessageIcon.id);
+    this.notesService.uploadImage(uploadData,this.childMessageIcon.id).subscribe(response=>{
+      console.log("response of upload image",response);
+    })
   }
 
   openDialog(): void {

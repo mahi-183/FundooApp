@@ -76,10 +76,14 @@ export class NotesService {
     return this.httpService.getNotes('Notes/Search?userId='+userId+'&searchString='+searchValue);
   }
 
+  uploadImage(data,id){
+    console.log("image",data);
+    console.log("image id",id);
+  
+    return this.httpService.postImage('Notes/UploadImage?id='+id,data);
+  }
 
   /**************************************** Labels Apis starts*********************************************** */
-  
-  
   /**
    *Labels api calls 
    * @param userId user id
@@ -123,6 +127,4 @@ export class NotesService {
     console.log('collaborator data',data);
     return this.httpService.postNotes('Notes/AddCollaborator',data);
   }
-
-
 }
