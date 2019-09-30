@@ -1,27 +1,55 @@
-<div fxLayout="{{direction}}" style="margin-top: 40px" fxFlexOffset="15" fxLayoutAlign="start center center">
+<!-- unpin note -->
+<div  fxLayout="{{direction}}" style="margin-top: 40px; marker-start: 10px" fxFlexOffset="15" fxLayoutAlign="start center center">
   <div class="element.style"  *ngFor="let item of childMessage">
-    <mat-card class = "displayNote" [ngStyle]="{'background-color':item.color}" [class.matcardView]="!isGrid" [class.matcardListView]="isGrid">
+    <mat-card  class = "displayNote" [ngStyle]="{'background-color':item.color}" [class.matcardView]="!isGrid" [class.matcardListView]="isGrid">
       <div fxLayout=" column">
+          <!-- <mat-icon class="unpin" style="opacity: 0" (click)='unpinnote(item)'> -->
+              <img class="unpin" *ngIf = "item.isPin==true" src="../../../../assets/image/pinBeforeClick.svg" (click)='unpinnote(item)'/>
+              <img class="unpin" *ngIf = "item.isPin==false" src="../../../../assets/image/pinAfterClick.svg" (click)='pinnote(item)'/>
+              <!-- </mat-icon> -->
         <div>
             <div class="image"> 
                 <img style="width: 100%" src="{{item.image}}"/>
             </div>
-          <p>{{item.title}}</p>
-          <p>{{item.description}}</p>
-          
-          <mat-chip-list *ngIf="item.reminder!=null">
-          <mat-chip>
-            {{item.reminder | date:'medium'}}
-            <mat-icon matChipRemove (click)="removeReminder(item)">cancel</mat-icon>
-          </mat-chip>
-        </mat-chip-list>
+            <p>{{item.title}}</p>
+            <p>{{item.description}}</p>
+            <mat-chip-list *ngIf="item.reminder!=null">
+              <mat-chip>
+                {{item.reminder | date:'medium'}}
+                <mat-icon matChipRemove (click)="removeReminder(item)">cancel</mat-icon>
+              </mat-chip>
+            </mat-chip-list>
         </div>
       </div>
-
       <div class="icon" >
         <app-icon [childMessageIcon]="item" [hideIcon] = "hideIcon"></app-icon>
       </div>
-
     </mat-card>
   </div>
 </div>
+<!-- unpin note -->
+<!-- <div fxLayout="{{direction}}" style="margin-top: 40px" fxFlexOffset="15" fxLayoutAlign="start center center">
+    <div class="element.style"  *ngFor="let item of childMessage">
+      <mat-card *ngIf = "item.isPin==true" class = "displayNote" [ngStyle]="{'background-color':item.color}" [class.matcardView]="!isGrid" [class.matcardListView]="isGrid">
+        <div fxLayout=" column">
+                <img class="unpin" src="../../../../assets/image/pinAfterClick.svg" (click)='pinnote(item)'/>
+          <div>
+              <div class="image"> 
+                  <img style="width: 100%" src="{{item.image}}"/>
+              </div>
+              <p>{{item.title}}</p>
+              <p>{{item.description}}</p>
+              <mat-chip-list *ngIf="item.reminder!=null">
+                <mat-chip>
+                  {{item.reminder | date:'medium'}}
+                  <mat-icon matChipRemove (click)="removeReminder(item)">cancel</mat-icon>
+                </mat-chip>
+              </mat-chip-list>
+          </div>
+        </div>
+        <div class="icon" >
+          <app-icon [childMessageIcon]="item" [hideIcon] = "hideIcon"></app-icon>
+        </div>
+      </mat-card>
+    </div>
+  </div> -->

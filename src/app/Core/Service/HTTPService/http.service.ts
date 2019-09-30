@@ -111,29 +111,18 @@ export class HTTPService {
    * @param url backurl
    * @param data data for image 
    */
-  // postImage(url, data)
-  // {
-  //   console.log("data in http ",data);
-    
-  //   let option = {
-  //     headers: new HttpHeaders({
-  //       'Authorization' : 'bearer ' + localStorage.getItem('token'),
-  //       }) 
-  //   }
-  //   console.log("data in option url ",url);
-  //   console.log("data in http data baseUrl1",this.baseUrl1); 
-  //   console.log("url",this.baseUrl1+url);
-  //   return this.http.post(this.baseUrl1 + url, data, option);
-  // }
   postImage(url, data)
   {
+    console.log("data in http ",data);
+    
     let option = {
       headers: new HttpHeaders({
         'Authorization' : 'bearer ' + localStorage.getItem('token'),
         }) 
     }
+    console.log("data in option url ",url);
+    console.log("data in http data baseUrl1",this.baseUrl1); 
+    console.log("url",this.baseUrl1+url);
     return this.http.post(this.baseUrl1 + url, data, option);
   }
-
-
 }

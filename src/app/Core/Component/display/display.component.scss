@@ -161,7 +161,39 @@
 .matcardListView{
     width:500px;
 }
+
 .image{
   width: 100%;
   background-size: cover;
+}
+.displayNote:hover{
+
+.unpin{
+  // opacity: 0.5;
+  // color: blue  !important;
+  visibility: visible;
+  margin-left: 95%;
+}
+.icon{
+  visibility: visible
+
+}
+}
+
+
+.icon{
+  // opacity: 0.5;
+  // color: blue  !important;
+  visibility: hidden
+  // margin-left: 95%;
+}
+.unpin{
+  // opacity: 0.5;
+  // color: blue  !important;
+  visibility: hidden;
+  margin-left: 95%;
+}
+
+.pin{
+  margin-left: 95%;
 }

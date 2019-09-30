@@ -17,6 +17,9 @@ export class NotesComponent implements OnInit {
     this.GetAllNotes();
   }
   
+  /**
+   * get all notes 
+   */
   GetAllNotes(){
     console.log("inside the notes component");
     this.userId = localStorage.getItem('UserId');
@@ -29,8 +32,13 @@ export class NotesComponent implements OnInit {
     });
   }
 
+  /**
+   * get all notes when the color or image or note type is set
+   * @param object object is the type which is empty
+   */
   update(object){
     if (object.type == 'update') {
+      console.log("inside update notes")
       this.GetAllNotes();
       }
   }

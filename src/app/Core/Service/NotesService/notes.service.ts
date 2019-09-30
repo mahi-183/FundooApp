@@ -82,6 +82,13 @@ export class NotesService {
   
     return this.httpService.postImage('Notes/UploadImage?id='+id,data);
   }
+  
+  uploadImageForNotes(data){
+    console.log("image in notes service",data);
+  
+    return this.httpService.postImage('Notes/UploadImageCreateNote',data);
+  }
+  
 
   /**************************************** Labels Apis starts*********************************************** */
   /**

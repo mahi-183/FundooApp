@@ -27,6 +27,7 @@ import { LabelDialogComponent } from './Core/Component/label-dialog/label-dialog
 import { AuthGuard } from './Core/Service/Auth/auth.guard';
 import { EditNoteComponent } from './Core/Component/edit-note/edit-note.component';
 import { CollaborationComponent } from './Core/Component/collaboration/collaboration.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { CollaborationComponent } from './Core/Component/collaboration/collabora
     MaterialModule, 
     FlexLayoutModule,
     HttpClientModule,
+    MatCheckboxModule
   ],
   providers: [AuthGuard],  
   entryComponents: [ProfiledialogComponent,LabelDialogComponent,CollaborationComponent],

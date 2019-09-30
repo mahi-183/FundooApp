@@ -16,7 +16,7 @@ export class TakeANoteComponent implements OnInit {
   noteColor;
   //noteType;
   setTypeNote: any;
-
+  setImageToNote:any;
   @Output() AferCloseEvent = new EventEmitter<any>();
   constructor(private notesService:NotesService, private router: Router) { }
 
@@ -25,41 +25,40 @@ export class TakeANoteComponent implements OnInit {
   ngOnInit() {
 
     }
+
+    /**
+     * add new notes
+     */
   AddNotes(){
-    this.toggle=false;
-    let data = {
-      userId: localStorage.getItem('UserId'),
-      title:this.title.value,
-      description:this.description.value,
-      color:this.noteColor,
-      noteType: this.setTypeNote
-    }
+        this.toggle=false;
+        let data = {
+          userId: localStorage.getItem('UserId'),
+          title:this.title.value,
+          description:this.description.value,
+          color:this.noteColor,
+          noteType: this.setTypeNote,
+          image:this.setImageToNote
+        }
     
-    console.log('data..........', data);
-   if(this.noteColor != undefined || this.description.value != "" || this.title.value != ""){
-      console.log("Inside if condition",data);
-      this.notesService.AddNotes(data).subscribe(response=>
+        console.log('data..........', data);
+        if(this.noteColor != undefined || this.description.value != "" || this.title.value != "" || this.setImageToNote != undefined)
         {
-          console.log("inside notes service", response);
-           // this.clearFilters()
-           this.title.reset();
-           this.description.reset();
-           this.noteColor='';
-           this.AferCloseEvent.emit(
-           {
-              type: 'update',
-              data: []
-            }
-            );
-          //  this.router.navigate(['/dashboard']);
-        },error=>{
-          console.log("error",error);
-        });
-      }
-      else{
-        console.log("notes not added successfuly")
-      }
-  }
+            console.log("Inside if condition",data);
+            this.notesService.AddNotes(data).subscribe(response=>{
+            console.log("inside notes service", response);
+            this.title.reset();
+            this.description.reset();
+            this.noteColor='';
+            this.setImageToNote=null;
+            this.AferCloseEvent.emit({type: 'update', data: []});
+            },error=>{
+              console.log("error",error);
+            });
+        }
+        else{
+          console.log("notes not added successfuly")
+        }
+    }
 
   openMainMatCard(){
     this.toggle=true;
@@ -73,5 +72,11 @@ export class TakeANoteComponent implements OnInit {
   setNoteType($event) {
     console.log($event, "noteType")
     this.setTypeNote = $event
+  }
+
+  setImage($event) {
+    console.log($event, "image in create note")
+    this.setImageToNote = $event
+    console.log("setImageToNote",this.setImageToNote);
   }
 }

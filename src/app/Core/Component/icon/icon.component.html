@@ -59,7 +59,10 @@
       <mat-menu #aboveMenu2 = "matMenu">
          <div class = "label">Label Note</div>
             <input type= "text" class="inputLabel" [(ngModel)] = "label" placeholder="Enter label name">
-            <div>
+            <!-- <div (click)="LabelList(label)">
+              <mat-checkbox >{{label.label}}</mat-checkbox>
+            </div> -->
+            <div fxLayout = "row" fxLayoutAlign = "end">
               <button mat-icon-button (click) = "AddLabelToNote($event)">add Label</button>
               </div>
           </mat-menu>

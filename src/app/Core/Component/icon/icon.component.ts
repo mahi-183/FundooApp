@@ -19,13 +19,18 @@ export class IconComponent implements OnInit {
   reminder:"reminder";
   archive:boolean = true;
   selectedFile:File;
-  // message;
+  //parentImage is to pass the uploaded image url to parent component
+  parentImage;
+
   ///emmited the selected notes color
   @Output() selectedColor = new EventEmitter();
+  //selected note type
   @Output() selectedNoteType = new EventEmitter();
+  //after close event is for emidiate update the note
   @Output() AferCloseEvent = new EventEmitter();
+  //after selected image it will imidiate reflect 
+  @Output() selectedImage = new EventEmitter();
  
-  
   constructor(private notesService:NotesService, private snackbar:MatSnackBar,public dialog: MatDialog) { }
 
   ngOnInit() {
@@ -83,14 +88,42 @@ export class IconComponent implements OnInit {
      }
   }
 
-  //add image on note
-  setImageOnNote(Image){
- 
+  /**
+   * upload image on note
+   * @param event image file
+   */
+  onFileChanged(event){
+    try
+    {
+      this.selectedFile = event.target.files[0];
+      let uploadData=new FormData();
+      uploadData.append('file',this.selectedFile);
+      console.log("upload",uploadData);
+      if(this.childMessageIcon == undefined)
+      {
+          console.log("inside if condition in icon",uploadData);
+          this.notesService.uploadImageForNotes(uploadData).subscribe(response=>{
+          console.log("response of upload image",response);
+          this.selectedImage.emit(response['imageUrl']);
+        })
+      }
+      else
+      {
+        console.log("id",this.childMessageIcon.id);
+        this.notesService.uploadImage(uploadData,this.childMessageIcon.id).subscribe(response=>{
+          console.log("response of upload image",response);
+          this.childMessageIcon.image = response['imageUrl'];
+          this.parentImage = this.childMessageIcon.image;
+          console.log("childmessage icon image",this.childMessageIcon.image);
+          this.selectedImage.emit(this.parentImage);
+        })
+      }
+    }
+    catch (error)
+    {
+      console.log('error uploading the image file');
+    }
   }
-
-  // onFileChanged($event,childMessageIcon){
-
-  // }
 
   ///add note to trash
   Trash(){
@@ -306,24 +339,21 @@ export class IconComponent implements OnInit {
     })
   }
 
-  //add label on note
+  /**
+   * add label to note
+   * @param $event event for add collaboarator
+   */
   AddLabelToNote($event){
     
     
   }
 
-  onFileChanged(event){
-    this.selectedFile = event.target.files[0];
-    let uploadData=new FormData();
-    uploadData.append('file',this.selectedFile,'file');
-    console.log("upload",uploadData);
+  LabelList(labelName){
 
-    console.log("id",this.childMessageIcon.id);
-    this.notesService.uploadImage(uploadData,this.childMessageIcon.id).subscribe(response=>{
-      console.log("response of upload image",response);
-    })
   }
-
+  /**
+   * open dialog of collaborator
+   */
   openDialog(): void {
     // localStorage.setItem('noteId',childMessageIcon.id);
     // const dialogConfig = new MatDialogConfig();

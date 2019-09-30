@@ -15,6 +15,7 @@ export class DisplayComponent implements OnInit {
   direction:any;
   userId;
   isGrid:boolean=true;
+  isPin: any;
   constructor(private dataService: DataService,private notesService:NotesService) { }
   
   // main={
@@ -43,12 +44,42 @@ export class DisplayComponent implements OnInit {
       // this.main.list=message;  
     });
   }
+ 
+  /**
+   *remove reminder from note
+   */
   removeReminder(item)
   {
     item.reminder=null;
-    this.notesService.updateNotes(this.userId,item).subscribe(data =>{
+    this.notesService.updateNotes(item.id,item).subscribe(data =>{
     },err =>{
       console.log(err);
+    })
+  }
+
+  /**
+   * update the note 
+   * @param note note data which we will update
+   */
+  pinnote(note){
+    note.isPin = true;
+    this.isPin = note.isPin;
+    console.log("inside display component",note);
+    this.notesService.updateNotes(note.id,note).subscribe(reponse=>{
+      console.log("inside display component");
+    })
+  }
+
+  /**
+   * update note as unpin
+   * @param note note data which we will update 
+   */
+  unpinnote(note){
+    note.isPin = false;
+    this.isPin = note.isPin;
+    console.log("inside display component",note);
+    this.notesService.updateNotes(note.id,note).subscribe(reponse=>{
+      console.log("inside display component");
     })
   }
 }

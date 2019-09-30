@@ -41,7 +41,7 @@
               <img [matMenuTriggerFor]="aboveMenu1" style="cursor: pointer;" mat-card-avatar src="{{Image}}">
                   <mat-menu #aboveMenu1="matMenu">  
                    
-                    <div class = "profile" fxLayout="row" fxLayoutAlign="space-between center"  fxFlex = 100>
+                    <div class = "profile" fxLayout="row" fxLayoutAlign="space-between center">
                       <div>
                       <img mat-card-avatar src="{{Image}}" (click)="openDialog()"
                        style="cursor: pointer; width: 100px;height:100px;border-radius: 50%;">
@@ -57,13 +57,13 @@
                     </div>
                   
                   <mat-divider></mat-divider>
-                  <div fxLayout = "row" fxLayoutAlign="space-between end">
+                  <div fxLayout = "row" fxLayoutAlign="end">
                   
                     <button class="signout"mat-button (click)="AddAccount()">
                     Add Account
                   </button>
                   <!-- <button class="signout"  style="margin-left: 192px"mat-button (click)="signOut()"> -->
-                    <button style="margin-left: 192px" mat-button (click)="signOut()">
+                    <button style="margin-left: 102px" mat-button (click)="signOut()">
                     Sign out
                   </button>
                   </div>
