@@ -129,6 +129,11 @@ export class NotesService {
     return this.httpService.postNotes('Label/Delete?LabelId='+id,id);
   }
 
+  AddLabelToNote(data){
+    console.log('inside the notesService',data);
+    return this.httpService.postNotes('Label/noteLabel',data);
+    
+  }
   /***********************************Add Collaborator******************************************** */
   addCollaborator(data){
     console.log('collaborator data',data);

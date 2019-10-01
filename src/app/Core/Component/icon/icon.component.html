@@ -51,21 +51,30 @@
   <!-- more_vert mat-menu -->
   <button mat-icon-button [matMenuTriggerFor]="aboveMenu1">
     <mat-icon>more_vert</mat-icon>
+  </button>
     <mat-menu #aboveMenu1="matMenu">
       <button *ngIf = "!hideIcon" mat-menu-item (click)="Trash()">Delete</button>
       <button  *ngIf = "hideIcon" mat-menu-item (click)="Restore()">Restore</button>
       <button  *ngIf = "hideIcon" mat-menu-item (click)="DeleteForever()">Delete_Forever</button>
       <button *ngIf = "!hideIcon" mat-menu-item [matMenuTriggerFor]="aboveMenu2">Add Label</button>
-      <mat-menu #aboveMenu2 = "matMenu">
-         <div class = "label">Label Note</div>
-            <input type= "text" class="inputLabel" [(ngModel)] = "label" placeholder="Enter label name">
-            <!-- <div (click)="LabelList(label)">
-              <mat-checkbox >{{label.label}}</mat-checkbox>
-            </div> -->
-            <div fxLayout = "row" fxLayoutAlign = "end">
-              <button mat-icon-button (click) = "AddLabelToNote($event)">add Label</button>
-              </div>
-          </mat-menu>
     </mat-menu>
-  </button>
+    <!-- <mat-menu #aboveMenu2 = "matMenu">
+      <div class = "label">Label Note</div>
+         <input (keyup)="search($event)" type= "search" class="inputLabel" [(ngModel)] = "label" placeholder="Enter label name">
+         <div fxLayout = "row" fxLayoutAlign = "end">
+           <button mat-icon-button (click) = "AddLabelToNote($event)">add Label</button>
+           </div>
+       </mat-menu> -->
+            
+      <mat-menu #aboveMenu2="matMenu">
+          <div class = "label">Label Note</div>
+          <input (keyup)="search($event)" type= "search" class="inputLabel" [(ngModel)] = "label" placeholder="Enter label name">
+          <div *ngFor="let label of filteredArray" >
+        <div (click)="AddLabelToNote(label)">
+                <mat-checkbox >{{label.labelName}}</mat-checkbox>
+        </div>
+        
+        </div>
+        </mat-menu>
+  <!-- </button> -->
 </div>

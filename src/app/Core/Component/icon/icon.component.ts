@@ -13,6 +13,7 @@ export class IconComponent implements OnInit {
   @Input() childMessageIcon;
   @Input() hideIcon;
   toggle:boolean=false;
+  labelEnabled:boolean = true;
   Image;
   label;
   noteType;
@@ -30,10 +31,21 @@ export class IconComponent implements OnInit {
   @Output() AferCloseEvent = new EventEmitter();
   //after selected image it will imidiate reflect 
   @Output() selectedImage = new EventEmitter();
+  //
+  @Output() selectedReminder = new EventEmitter();
+  
+  LabelArray: any;
+  uesrId: string;
+  Labels: any;
+  searchValue: string;
+  filteredArray: any;
  
   constructor(private notesService:NotesService, private snackbar:MatSnackBar,public dialog: MatDialog) { }
 
   ngOnInit() {
+    this.uesrId = localStorage.getItem('UserId');
+    this.LabelList();
+    this.filteredArray = this.LabelArray;
   }
 
   colorArray : any[] = [
@@ -293,12 +305,11 @@ export class IconComponent implements OnInit {
   ///set the remider today date
   Today(childMessageIcon){
     try{
-      console.log("card data",childMessageIcon);
-    
-      var date = new Date();
-      date.setHours(20,0,0)
-      childMessageIcon.reminder = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " +  date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
-      this.notesService.updateNotes(this.childMessageIcon.id,this.childMessageIcon).subscribe(data =>{
+        console.log("card data",childMessageIcon);
+        var date = new Date();
+        date.setHours(20,0,0)
+        childMessageIcon.reminder = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " +  date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+        this.notesService.updateNotes(this.childMessageIcon.id,this.childMessageIcon).subscribe(data =>{
         console.log(data);
         // this.update.emit({});
       },err =>{
@@ -343,14 +354,57 @@ export class IconComponent implements OnInit {
    * add label to note
    * @param $event event for add collaboarator
    */
-  AddLabelToNote($event){
+  AddLabelToNote(label){
+    var data = {
+      'noteId':this.childMessageIcon.id,
+      'labelId':label.id,
+      'userId':this.uesrId
+    }
     
-    
+    this.notesService.AddLabelToNote(data).subscribe(response=>{
+      console.log("response",response);
+    })
   }
 
-  LabelList(labelName){
-
+  LabelList(){
+    this.notesService.getAllLabels(this.uesrId).subscribe(response=>{
+      this.LabelArray = response['result'];
+      this.filteredArray = this.LabelArray;
+      console.log("",this.LabelArray);
+    })
   }
+
+  displayLabels(){
+    this.labelEnabled = !this.labelEnabled;
+  }
+  /**
+   * search the label by given search value
+   * @param $event search value 
+   */
+  search(event){
+    this.searchValue = event.target.value +'\n';
+    console.log("search value",this.searchValue);
+    this.searchValue = this.searchValue.trim();
+    if(this.searchValue!=undefined && this.searchValue!=null && this.searchValue!='')
+    {
+      this.filteredArray = this.filterUser(this.LabelArray,this.searchValue);
+      console.log("filtered array", this.filteredArray);
+    }
+    else
+    {
+      this.filteredArray= this.LabelArray;
+    }
+  }
+
+  /**
+   * filter the notes by search value
+   */
+  filterUser=(LabelArray, searchValue)=>{
+    this.Labels = LabelArray.filter(item=>{
+      return item.labelName.toLowerCase().startsWith(searchValue.toLowerCase());
+    })
+    return this.Labels;
+   }
   /**
    * open dialog of collaborator
    */
@@ -366,4 +420,5 @@ export class IconComponent implements OnInit {
       console.log('The dialog was closed');
     }); 
   }
+
 }
