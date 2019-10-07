@@ -68,9 +68,9 @@
             
       <mat-menu #aboveMenu2="matMenu">
           <div class = "label">Label Note</div>
-          <input (keyup)="search($event)" type= "search" class="inputLabel" [(ngModel)] = "label" placeholder="Enter label name">
+          <input  (click)="$event.stopPropagation()" (keyup)="search($event)" type= "search" class="inputLabel" [(ngModel)] = "label" placeholder="Enter label name">
           <div *ngFor="let label of filteredArray" >
-        <div (click)="AddLabelToNote(label)">
+        <div (click)="AddLabelToNote(label)" (click)="$event.stopPropagation()">
                 <mat-checkbox >{{label.labelName}}</mat-checkbox>
         </div>
         

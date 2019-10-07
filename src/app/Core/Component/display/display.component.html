@@ -11,8 +11,8 @@
             <div class="image"> 
                 <img style="width: 100%" src="{{item.image}}"/>
             </div>
-            <p>{{item.title}}</p>
-            <p>{{item.description}}</p>
+            <p (click)="openDialog(item)">{{item.title}}</p>
+            <p (click)="openDialog(item)">{{item.description}}</p>
             <mat-chip-list *ngIf="item.reminder!=null">
               <mat-chip>
                 {{item.reminder | date:'medium'}}
@@ -22,16 +22,16 @@
         </div>
       </div>
       <div class="icon" >
-        <app-icon [childMessageIcon]="item" [hideIcon] = "hideIcon"></app-icon>
+        <app-icon [childMessageIcon]="item" [hideIcon] = "hideIcon" (selectedNoteType) = "archive($event)"></app-icon>
       </div>
     </mat-card>
   </div>
 </div>
 <!-- unpin note -->
 <!-- <div fxLayout="{{direction}}" style="margin-top: 40px" fxFlexOffset="15" fxLayoutAlign="start center center">
-    <div class="element.style"  *ngFor="let item of childMessage">
+    <div fxLayout=" row" class="element.style"  *ngFor="let item of childMessage">
       <mat-card *ngIf = "item.isPin==true" class = "displayNote" [ngStyle]="{'background-color':item.color}" [class.matcardView]="!isGrid" [class.matcardListView]="isGrid">
-        <div fxLayout=" column">
+        <div >
                 <img class="unpin" src="../../../../assets/image/pinAfterClick.svg" (click)='pinnote(item)'/>
           <div>
               <div class="image"> 

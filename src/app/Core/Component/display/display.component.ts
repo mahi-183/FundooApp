@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output,EventEmitter } from '@angular/core';
 import { DataService } from '../../Service/DataService/data.service';
 import { NotesService } from '../../Service/NotesService/notes.service';
+import { LabelDialogComponent } from '../label-dialog/label-dialog.component';
+import { MatDialogRef, MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-display',
@@ -16,7 +18,9 @@ export class DisplayComponent implements OnInit {
   userId;
   isGrid:boolean=true;
   isPin: any;
-  constructor(private dataService: DataService,private notesService:NotesService) { }
+  @Output() selectedNoteType = new EventEmitter<any>();
+
+  constructor(private dataService: DataService,private notesService:NotesService,private dialog:MatDialog) { }
   
   // main={
   //   gird:true,
@@ -80,6 +84,31 @@ export class DisplayComponent implements OnInit {
     console.log("inside display component",note);
     this.notesService.updateNotes(note.id,note).subscribe(reponse=>{
       console.log("inside display component");
+    })
+  }
+
+  archive(event){
+    if(event.type == 'update'){
+      this.selectedNoteType.emit(event);
+    }
+  }
+
+  openDialog(note): void {
+    console.log(note);
+    const dialogRef = this.dialog.open(LabelDialogComponent, {
+
+      data: {note}
+    }
+    );
+    dialogRef.afterClosed().subscribe(result=>{    
+      console.log(result.id);
+      this.notesService.updateNotes(result.id,result).subscribe(reult=>
+        {
+          
+        },err =>{
+          console.log(err);         
+        }
+        )     
     })
   }
 }

@@ -31,7 +31,7 @@ export class IconComponent implements OnInit {
   @Output() AferCloseEvent = new EventEmitter();
   //after selected image it will imidiate reflect 
   @Output() selectedImage = new EventEmitter();
-  //
+  //select reminder after set it
   @Output() selectedReminder = new EventEmitter();
   
   LabelArray: any;
@@ -137,24 +137,31 @@ export class IconComponent implements OnInit {
     }
   }
 
-  ///add note to trash
+  /**
+   * trash for delete the card temparorily
+   */
   Trash(){
-    this.childMessageIcon.noteType=1;
-    var data = {
-      "id":this.childMessageIcon.id,
-      "noteType":1
-    }
-    
-    this.notesService.updateNotes(this.childMessageIcon.id,this.childMessageIcon).subscribe(response=>
-      {
-        this.snackbar.open("Note Trashed","undo",
-          { duration: 5000 }
-          )
-      }),error=>{
-        this.snackbar.open("Note Not trashed","undo",
-          { duration: 5000 }
-          )
+    try{
+      this.childMessageIcon.noteType=1;
+      var data = {
+        "id":this.childMessageIcon.id,
+        "noteType":1
       }
+      
+      this.notesService.updateNotes(this.childMessageIcon.id,this.childMessageIcon).subscribe(response=>
+        {
+          this.snackbar.open("Note Trashed","undo",
+            { duration: 5000 }
+            )
+        }),error=>{
+          this.snackbar.open("Note Not trashed","undo",
+            { duration: 5000 }
+            )
+        }
+    }
+    catch(error){
+      console.log("error", error);
+    }
   }
 
   ///archive notes
@@ -219,7 +226,7 @@ export class IconComponent implements OnInit {
         this.noteType = this.childMessageIcon.noteType;
         var data = {
          "id":this.childMessageIcon.id,
-          "noteType":0
+          "noteType":this.noteType
          }
       
       this.notesService.updateNotes(this.childMessageIcon.id,this.childMessageIcon).subscribe(response=>
