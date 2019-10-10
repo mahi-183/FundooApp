@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, Output,EventEmitter } from '@angular/core';
 import { DataService } from '../../Service/DataService/data.service';
 import { NotesService } from '../../Service/NotesService/notes.service';
-import { LabelDialogComponent } from '../label-dialog/label-dialog.component';
 import { MatDialogRef, MatDialog } from '@angular/material';
+import { EditNoteComponent } from '../edit-note/edit-note.component';
 
 @Component({
   selector: 'app-display',
@@ -19,6 +19,7 @@ export class DisplayComponent implements OnInit {
   isGrid:boolean=true;
   isPin: any;
   @Output() selectedNoteType = new EventEmitter<any>();
+  noteEdit: any;
 
   constructor(private dataService: DataService,private notesService:NotesService,private dialog:MatDialog) { }
   
@@ -60,6 +61,17 @@ export class DisplayComponent implements OnInit {
       console.log(err);
     })
   }
+  /**
+   *remove reminder from note
+   */
+  removeImage(item)
+  {
+    item.image=null;
+    this.notesService.updateNotes(item.id,item).subscribe(data =>{
+    },err =>{
+      console.log(err);
+    })
+  }
 
   /**
    * update the note 
@@ -95,13 +107,14 @@ export class DisplayComponent implements OnInit {
 
   openDialog(note): void {
     console.log(note);
-    const dialogRef = this.dialog.open(LabelDialogComponent, {
-
-      data: {note}
+    this.noteEdit = note;
+    const dialogRef = this.dialog.open(EditNoteComponent, {
+      data: this.noteEdit
     }
     );
     dialogRef.afterClosed().subscribe(result=>{    
-      console.log(result.id);
+      console.log("close event in display",result.id);
+      console.log("close event result",result);
       this.notesService.updateNotes(result.id,result).subscribe(reult=>
         {
           

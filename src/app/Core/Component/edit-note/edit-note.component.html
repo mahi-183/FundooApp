@@ -1,3 +1,17 @@
-<p>
-  edit-note works!
-</p>
+<!-- {{note.title}} -->
+
+<mat-card [style.background-color]=note.color>
+  <div>
+        <img style="width: 100%" src="{{note.image}}" class="notesImage" />
+    </div>
+      <div>
+        <input  placeholder="Title" class="dialog" style="background: transparent" [(ngModel)]="note.title" >
+      </div>
+      <div>
+        <textarea matTextareaAutosize placeholder="Take a note" class="dialog" style="background: transparent" [(ngModel)]="note.description" ></textarea>
+      </div>
+      <div>
+      <app-icon [childMessageIcon]="note"></app-icon>
+      <button mat-button  (click)="isOpen=false"  class="dialogButton" (click)="  onNoClick()">close</button>
+      </div> 
+    </mat-card>

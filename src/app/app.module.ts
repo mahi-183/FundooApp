@@ -63,7 +63,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatCheckboxModule 
   ],
   providers: [AuthGuard],  
-  entryComponents: [ProfiledialogComponent,LabelDialogComponent,CollaborationComponent],
+  entryComponents: [ProfiledialogComponent,LabelDialogComponent,CollaborationComponent,EditNoteComponent],
 
   bootstrap: [AppComponent]
 })

@@ -121,4 +121,20 @@ export class DashboardComponent implements OnInit {
   {
     this.getAllLabel();
   }
+
+  /**
+   * get the notes with label
+   * @param label label on note
+   */
+  getNoteLabel(label){
+    try{
+
+      console.log("label Id",label.id);
+      // this.notesService.getNoteLabel(label.id).subscribe(response=>{
+      //   console.log("get Note label response",response);
+      // })
+    }catch(error){
+      console.log("error");
+    }
+  }
 }
