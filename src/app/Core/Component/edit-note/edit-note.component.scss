@@ -1,8 +1,19 @@
 .dialogButton{
-    left:80%;
+    left:20%;
     top:15%
 }
 .dialog{
     border: 0;
     outline: none;
+    word-break: break-all;
+    word-wrap: break-word;;
 }
+.notesImage{
+padding: none;
+}
+// ::ng-deep .mat-card{
+//   padding: 0px;
+// }
+// .displayNote.mat-card{
+//   padding: 0px;
+// }

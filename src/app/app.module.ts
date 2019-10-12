@@ -49,8 +49,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     ProfiledialogComponent,
     LabelDialogComponent,
     EditNoteComponent,
-    CollaborationComponent,
-    
+    CollaborationComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +59,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MaterialModule, 
     FlexLayoutModule,
     HttpClientModule,
-    MatCheckboxModule 
+    MatCheckboxModule,
   ],
   providers: [AuthGuard],  
   entryComponents: [ProfiledialogComponent,LabelDialogComponent,CollaborationComponent,EditNoteComponent],

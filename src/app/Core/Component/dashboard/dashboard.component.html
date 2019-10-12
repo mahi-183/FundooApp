@@ -8,7 +8,7 @@
       srcset="https://www.gstatic.com/images/branding/product/1x/keep_48dp.png 1x, https://www.gstatic.com/images/branding/product/2x/keep_48dp.png 2x "
       style="width:40px;height:40px">
     <span>
-      <h1 class="example-app-name">FundooNotes</h1>
+      <h1 class="example-app-name">{{onchange}}</h1>
     </span>
 
     <div  fxLayout = "row" fxFlex="100">
@@ -83,17 +83,17 @@
     <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
       fixedTopGap="56">
       <mat-nav-list class="SideNav" style="width:210px">
-        <div>
-          <a mat-list-item routerLink="."><img src="../../../assets/image/bulb.svg" style="padding-right: 20px;">Notes</a>
+        <div (click) = "notes(Notes)">
+          <a class = "notes" mat-list-item routerLink="."><img src="../../../assets/image/bulb.svg" style="padding-right: 20px;">Notes</a>
         </div>
-        <div fxLayoutGap=10px>
-          <a mat-list-item routerLink="reminder">
+        <div fxLayoutGap=10px (click) = "notes(reminder)">
+          <a class = "notes" mat-list-item routerLink="reminder">
             <mat-icon class="material-icons" style="padding-right: 15px;">notifications</mat-icon>Reminder
           </a>
         </div>
         <mat-divider style="padding-bottom:10px"></mat-divider>
         <!--Label click model -->
-        <div>
+        <div (click) = "notes(Label)">
           <!-- <a mat-list-item><img (click)="openLabelDialog()" src="../../../assets/image/edit.svg">Label</a> -->
           <label style="padding-left:20px">Labels</label><br><br>
 
@@ -113,14 +113,14 @@
           </div>
         <mat-divider></mat-divider>
         
-        <div>
-          <a mat-list-item routerLink="archive">
+        <div (click) = "notes(archive)">
+          <a class = "notes" mat-list-item routerLink="archive">
             <mat-icon style="padding-right: 20px;">archive</mat-icon>Archive
           </a>
         </div>
 
-        <div>
-          <a mat-list-item routerLink="trash">
+        <div (click) = "notes(Trash)">
+          <a class = "notes" mat-list-item routerLink="trash">
             <mat-icon style="padding-right: 20px;">restore_from_trash</mat-icon>Trash
           </a>
         </div>

@@ -10,6 +10,12 @@ import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { MatChipsModule } from '@angular/material/chips';
+import { MessagingService } from './shared/messaging.service';
+import { environment } from '../environments/environment';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireMessagingModule } from '@angular/fire/messaging';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 @NgModule({
     
@@ -29,7 +35,12 @@ import { MatChipsModule } from '@angular/material/chips';
         FormsModule,
         MatDialogModule,
         ImageCropperModule,
-        MatChipsModule
+        MatChipsModule,
+        AngularFireModule.initializeApp(environment.firebase),
+        AngularFireDatabaseModule,
+        AngularFireAuthModule,
+        AngularFireMessagingModule,
+
     ],
     exports: [
         MatFormFieldModule,
@@ -49,7 +60,7 @@ import { MatChipsModule } from '@angular/material/chips';
         ImageCropperModule,
         MatChipsModule
     ],
-    providers: [],
+    providers: [MessagingService],
   })
   export class MaterialModule { }
   

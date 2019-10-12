@@ -24,6 +24,12 @@ export class DashboardComponent implements OnInit {
   UserId: string;
   islist : boolean =true;
   message: boolean;
+  onchange: string;
+  Notes:string;
+  reminder: string;
+  archive: string;
+  Trash: string;
+  Label: string;
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, public dialog: MatDialog,
     private router:Router, private dataService:DataService, private notesService:NotesService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
@@ -44,8 +50,18 @@ export class DashboardComponent implements OnInit {
   this.getAllLabel();
   this.dataService.messageOfGrid.subscribe(message => this.message = message);
   this.islist = true;
+  this.onchange = "FundooNotes";
+  this.Notes = "Notes";
+  this.reminder = "Reminder";
+  this.archive = "Archive";
+  this.Trash = "Trash";
+  this.Label = "Label"
   }
 
+  notes(notes){
+    
+    this.onchange = notes;
+  }
   //sign out the 
   signOut(){
     localStorage.clear();
